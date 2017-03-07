@@ -3,8 +3,8 @@ var User = require('../models/user.model') //creates a reference to our model, .
 exports.register = function(req, res){  //Supplies the logic of being able to register a new user
 	var newUser = new User(); 			//creates a new user object; think of it as a replica of the user model
 
-	newUser.firstname = req.body.firstName;
-	newUser.lastname = req.body.lastName;
+	newUser.firstname = req.body.firstname;
+	newUser.lastname = req.body.lastname;
 	newUser.username = req.body.username; //grabs the name=username in the index file and passes it to the db; can use BP cuz we did app.use in app.js
 	newUser.email = req.body.email;
 	newUser.password = req.body.password;
@@ -16,7 +16,7 @@ exports.register = function(req, res){  //Supplies the logic of being able to re
 		res.send('error registering user');
 		}else{
 		 //console.log(user);				//this will console log all of the model properties of each user that signs up
-		 res.redirect('/index.html');	
+		 res.redirect('/home');	
 		}
 	});							//grabbed references of the user props from our view, we need to save them
 };

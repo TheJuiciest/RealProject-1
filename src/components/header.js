@@ -16,6 +16,15 @@ class Header extends Component {
 	                <li className="Nav__item">
 	                  <Link className="registerLogin" to="/login">Register/Login</Link>
 	                </li>
+	                <li className="Nav__item">
+	                  <Link className="lostFound" to="/lostandfound">Lost & Found</Link>
+	                </li>
+	                <li className="Nav__item">
+	                  <Link className="myAccount" to="/myaccount">My Account</Link>
+	                </li>
+	                <li className="Nav__item">
+	                  <Link className="about" to="/about">About</Link>
+	                </li>
 	              </ul>
 	            </div>
 	          </div>

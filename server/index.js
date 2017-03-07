@@ -9,7 +9,7 @@ var controller = require('./controllers/user.controller'); //need to add this we
 
 
 var app = express();
-var db = 'mongodb://localhost/userDog';
+var db = 'mongodb://localhost/dog_project';
 
 mongoose.connect(db)
 
@@ -32,7 +32,7 @@ app.get('/', function(req, res){  //specifies the route that the user goes to wh
 
 //This is going to be the route that our app is going to look for when sending our username and email to the db to save
 //Normally you'd create a routes.js file to hold all of those routes in one locations but this is the only one...
-app.post('/register', controller.register); //We'll create a method called register within our controller that will handle the logic of adding our username and pw to our db
+apiRoutes.post('/register', controller.register); //We'll create a method called register within our controller that will handle the logic of adding our username and pw to our db
 									//That said, we have to add this controller as a module to the app.js file
 
 // API ROUTES

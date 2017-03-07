@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './index.css';
-import { Link, Switch, Route, Router, browserHistory } from 'react-router';
+import { Route, Router, browserHistory } from 'react-router';
 import Header from './components/header';
 import Login from './components/Login';
 import Home from './components/Home';
+import Register from './components/Register';
 
 class App extends Component {
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
           <Router history={browserHistory}>
             <Route path='/' component={Header}>
                 <Route component={Home} path="home" />
-                <Route component={Login} path="login" />
+                <Route component={() => (<div><Login/><Register/></div>)} path="login" />
             </Route>
           </Router>
         </div>
