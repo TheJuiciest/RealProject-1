@@ -13,7 +13,7 @@ class Submission extends Component {
 			date: Date,
 			location: "",
 			topicTitle: "",
-			submissionValue: "",
+			submissionType: "",
 			//photoAdded: false,
 			description: ""
 		};
@@ -30,10 +30,6 @@ class Submission extends Component {
 	topicTitleChanged(event) {
 		this.setState( { topicTitle: event.target.value} )
 	}
-	
-	submissionTypeChanged(event) {
-		this.setState( { submissionValue: event.target.value} )
-	}
 
 	/*photoChanged(event) {
 		this.setState({ photoAdded: !this.state.photoAdded})
@@ -44,6 +40,7 @@ class Submission extends Component {
 	}
 
 	submissionEvent() {
+		//some sort of search through the state to check that everything has an answer
 		$.ajax({
 			method: 'POST', 
 			url: config.apiServer + '/api/submission',
@@ -68,7 +65,7 @@ class Submission extends Component {
 					<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
 					<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
 					<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
-					<select id="selectValue" value={this.state.selectValue} onChange={this.submissionTypeChanged.bind(this)}>
+					<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
 						<option value="Hazard">Hazard</option>
 						<option value="Lost Dog">Lost Dog</option>
 						<option value="Found Dog">Found Dog</option>

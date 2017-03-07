@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
-import { Route, Router, browserHistory } from 'react-router';
+import { Route, Router, IndexRoute, browserHistory } from 'react-router';
 import Header from './components/header';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -15,7 +15,7 @@ class App extends Component {
           <h2>Man's Best Friend</h2>
           <Router history={browserHistory}>
             <Route path='/' component={Header}>
-                <Route component={() => (<div><Home/><Submission/></div>)} path="home" />
+                <IndexRoute component={() => (<div><Home/><Submission/></div>)} path="home" />
                 <Route component={() => (<div><Login/><Register/></div>)} path="login" />
             </Route>
           </Router>

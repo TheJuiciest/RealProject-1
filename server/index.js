@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 
 
 app.get('/', function(req, res){  //specifies the route that the user goes to when they've loaded up their application
-	res.render('index.html'); 	  //Because we've set our directory name to public, we can render the index.html and will automatically look in the public directory
+	return res.render('index.html'); 	  //Because we've set our directory name to public, we can render the index.html and will automatically look in the public directory
 })
 
 //This is going to be the route that our app is going to look for when sending our username and email to the db to save
