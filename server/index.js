@@ -5,9 +5,10 @@ var jwt    = require('jsonwebtoken');     //let's us use webtokens
 var config = require('../config');       //let's us use our config file, which connects us to mongo user database
 var path = require('path');
 var User = require('./models/user.model');
-var Post = require('./models/post.model');
+var Submission = require('./models/submissionModel');
+var subcontroller = require('./controllers/submission.controller');
 var controller = require('./controllers/user.controller'); //need to add this we're using the method deinfed in user.controller that is being posted to the db from app.js 
-var morgan = require('morgan')
+var morgan = require('morgan');
 
 var app = express();
 var db = 'mongodb://localhost/dog_project';
@@ -41,7 +42,7 @@ app.get('/', function(req, res){  //specifies the route that the user goes to wh
 
 var apiRoutes = express.Router();				//this defines how things move to and from the mongo database for users
 
-apiRoutes.post('/post', controller.post);
+apiRoutes.post('/submission', subcontroller.submission);
 
 apiRoutes.post('/register', controller.register);
 
@@ -121,8 +122,6 @@ apiRoutes.use(function(req, res, next) {
     });
   }
 });
-
-apiRoutes.post('/post', controller.post);
 
 apiRoutes.get('/users', function(req, res) {  //this gets the users from the user database in mongo and return them as a json object
   User.find({}, function(err, users) {

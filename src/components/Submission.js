@@ -5,7 +5,7 @@ var config = require('../../config');       //let's us use our config file, whic
 
 
 
-class Post extends Component {
+class Submission extends Component {
 	
 	constructor(props){
 		super(props)
@@ -13,7 +13,7 @@ class Post extends Component {
 			date: Date,
 			location: "",
 			topicTitle: "",
-			selectValue: "",
+			submissionValue: "",
 			//photoAdded: false,
 			description: ""
 		};
@@ -31,8 +31,8 @@ class Post extends Component {
 		this.setState( { topicTitle: event.target.value} )
 	}
 	
-	postTypeChanged(event) {
-		this.setState( { selectValue: event.target.value} )
+	submissionTypeChanged(event) {
+		this.setState( { submissionValue: event.target.value} )
 	}
 
 	/*photoChanged(event) {
@@ -43,15 +43,15 @@ class Post extends Component {
 		this.setState({ description: event.target.value})
 	}
 
-	postEvent() {
+	submissionEvent() {
 		$.ajax({
 			method: 'POST', 
-			url: config.apiServer + '/api/post',
+			url: config.apiServer + '/api/submission',
 			data: {
 				date: this.state.date,
 				location: this.state.location,
 				topicTitle: this.state.topicTitle,
-				postType: this.state.postType,
+				submissionType: this.state.submissionType,
 				//photoAdded: this.state.photoAdded,
 				description: this.state.description
 			}
@@ -66,9 +66,9 @@ class Post extends Component {
 			<div>
 					<h2>Submit a Post</h2>
 					<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
-					<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event post?" /><br/>
+					<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
 					<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
-					<select id="selectValue" value={this.state.selectValue} onChange={this.postTypeChanged.bind(this)}>
+					<select id="selectValue" value={this.state.selectValue} onChange={this.submissionTypeChanged.bind(this)}>
 						<option value="Hazard">Hazard</option>
 						<option value="Lost Dog">Lost Dog</option>
 						<option value="Found Dog">Found Dog</option>
@@ -77,12 +77,12 @@ class Post extends Component {
 						<option value="Other">Other</option>
 					</select><br/>
 					<input id="description" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
-					<button className="postButton" value="Beam it brah"
-						onClick={this.postEvent.bind(this)}>Beam it brah!</button>
+					<button className="submissionButton" value="Beam it brah"
+						onClick={this.submissionEvent.bind(this)}>Beam it brah!</button>
 			</div>
 			);
 	}
 }
 
 
-export default Post;
+export default Submission;
