@@ -27,10 +27,10 @@ class Login extends Component {
 		$.ajax({
 			method: 'POST', 
 			url: config.apiServer + '/api/authenticate',
-			data: JSON.stringify({
+			data: {
 				username: this.state.username,
-				password: this.sate.password
-			})
+				password: this.state.password
+			}
 		})
 		.done(function(result){
 			console.log(result)
@@ -40,13 +40,11 @@ class Login extends Component {
 	render() {
 		return (
 			<div>
-				<form className='login'>
 					<h2>Login Your Life</h2>
-					<input name="username" type="username" placeholder="Username" /><br/>
-					<input name="password" type="password" placeholder="Enter Password" /><br/>
-					<button className="loginButton" 
-					onClick={this.loginEvent}>Log Me On In</button>
-				</form>
+					<input value={this.state.username} onChange={this.usernameChanged.bind(this)} placeholder="Enter Username" /><br/>
+					<input value={this.state.password} onChange={this.passwordChanged.bind(this)} type="password" placeholder="Enter Password" /><br/>
+					<button className="loginButton" value="Let's Get To Postin!"
+					onClick={this.loginEvent.bind(this)}>Log Me On In</button>
 			</div>
 			);
 	}

@@ -4,6 +4,17 @@ import React, {Component} from 'react';
 //var config = require('../../config');   
 
 class Home extends Component {
+	
+/*	recentEvents() {
+		$.ajax({
+			method: 'GET',
+			url: config.apiServer '/posts'
+			data: {
+
+			}
+		})
+	} */
+
 	render() {
 		return (
 			<div>Home</div>

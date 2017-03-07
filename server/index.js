@@ -5,8 +5,9 @@ var jwt    = require('jsonwebtoken');     //let's us use webtokens
 var config = require('../config');       //let's us use our config file, which connects us to mongo user database
 var path = require('path');
 var User = require('./models/user.model');
+var Post = require('./models/post.model');
 var controller = require('./controllers/user.controller'); //need to add this we're using the method deinfed in user.controller that is being posted to the db from app.js 
-
+var morgan = require('morgan')
 
 var app = express();
 var db = 'mongodb://localhost/dog_project';
@@ -15,6 +16,7 @@ mongoose.connect(db)
 
 app.use(express.static('public'))			//which page to be displayed (our index.html)
 
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -32,12 +34,16 @@ app.get('/', function(req, res){  //specifies the route that the user goes to wh
 
 //This is going to be the route that our app is going to look for when sending our username and email to the db to save
 //Normally you'd create a routes.js file to hold all of those routes in one locations but this is the only one...
-apiRoutes.post('/register', controller.register); //We'll create a method called register within our controller that will handle the logic of adding our username and pw to our db
+//We'll create a method called register within our controller that will handle the logic of adding our username and pw to our db
 									//That said, we have to add this controller as a module to the app.js file
 
 // API ROUTES
 
 var apiRoutes = express.Router();				//this defines how things move to and from the mongo database for users
+
+apiRoutes.post('/post', controller.post);
+
+apiRoutes.post('/register', controller.register);
 
 apiRoutes.get('/users', function(req, res) {	//this gets the users from the user database in mongo and return them as a json object
   User.find({}, function(err, users) {
@@ -113,9 +119,10 @@ apiRoutes.use(function(req, res, next) {
         success: false, 
         message: 'No token provided.' 
     });
-    
   }
 });
+
+apiRoutes.post('/post', controller.post);
 
 apiRoutes.get('/users', function(req, res) {  //this gets the users from the user database in mongo and return them as a json object
   User.find({}, function(err, users) {

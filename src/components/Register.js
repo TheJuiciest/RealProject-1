@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 //import ReactDOM from 'react-dom';
 import $ from 'jquery';
-//var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
+var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
 
 
 
@@ -23,7 +23,7 @@ class Register extends Component {
 	}
 	
 	lastnameChanged(event) {
-		this.setState({ lastname: event.target.value})
+		this.setState( {lastname: event.target.value})
 	}
 
 	usernameChanged(event) {
@@ -41,14 +41,14 @@ class Register extends Component {
 	registerEvent() {
 		$.ajax({
 			method: 'POST', 
-			url: '/api/register',
-			data: JSON.stringify({
+			url: config.apiServer + '/api/register',
+			data: {
 				firstname: this.state.firstname,
-				lastname: this.sate.lastname,
+				lastname: this.state.lastname,
 				username: this.state.username,
 				email: this.state.email,
-				password: this.sate.password
-			})
+				password: this.state.password
+			}
 		})
 		.done(function(result){
 			console.log(result)
@@ -58,20 +58,18 @@ class Register extends Component {
 	render() {
 		return (
 			<div>
-				<form className='register'>
 					<h2>Register Your Life</h2>
-					<input name="firstName" type="firstname" placeholder="First Name" /><br/>
-					<input name="lastName" type="lastname" placeholder="Last Name" /><br/>
-					<input name="username" type="username" placeholder="Username" /><br/>
-					<input name="email" type="email" placeholder="Email Address" /><br/>
-					<input name="password" type="password" placeholder="Enter Password" /><br/>
+					<input value={this.state.firstname} onChange={this.firstnameChanged.bind(this)} placeholder="First Name" /><br/>
+					<input value={this.state.lastname} onChange={this.lastnameChanged.bind(this)} placeholder="Last Name" /><br/>
+					<input value={this.state.username} onChange={this.usernameChanged.bind(this)} placeholder="Username" /><br/>
+					<input value={this.state.email} onChange={this.emailChanged.bind(this)} placeholder="Email Address" /><br/>
+					<input value={this.state.password} onChange={this.passwordChanged.bind(this)} type="password" placeholder="Enter Password" /><br/>
 					<button className="registerButton" value="Let's Get To It Sparky!"
-						onClick={this.registerEvent}>Register Me On Down!</button>
-				</form>
+						onClick={this.registerEvent.bind(this)}>Register Me On Down!</button>
 			</div>
 			);
 	}
 }
 
 
-export default Register
+export default Register;
