@@ -46,9 +46,9 @@ apiRoutes.post('/submission', subcontroller.submission);
 
 apiRoutes.post('/register', controller.register);
 
-apiRoutes.get('/users', function(req, res) {	//this gets the users from the user database in mongo and return them as a json object
-  User.find({}, function(err, users) {
-    res.json(users);
+apiRoutes.get('/submissions', function(req, res) {	//this gets the submission from the user database in mongo and return them as a json object
+  Submission.find({}, function(err, submissions) {
+    res.json(submissions);
   });
 });   
 
