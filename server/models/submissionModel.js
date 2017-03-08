@@ -20,9 +20,8 @@ var SubmissionSchema = new Schema ({
 		// enum: ['Hazard', 'Lost Dog', 'Found Dog', 'Current Condition', 'Community Event', 'Other'],
 		//required: true
 	},
-	/*img: {               // This probably wont work. must have imgPath
-		type: String,
-		data: Buffer,
+	/*file: {                This probably wont work. must have imgPath
+		type: String, 		 '/uploadedImages/lostDogs/romeo.jpg'
 		required: false 
 	} */
 	description: {

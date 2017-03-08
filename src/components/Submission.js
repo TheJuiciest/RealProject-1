@@ -66,6 +66,7 @@ class Submission extends Component {
 					<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
 					<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
 					<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
+						<option value="pleaseSelect">Type of Submission Event</option>
 						<option value="Hazard">Hazard</option>
 						<option value="Lost Dog">Lost Dog</option>
 						<option value="Found Dog">Found Dog</option>

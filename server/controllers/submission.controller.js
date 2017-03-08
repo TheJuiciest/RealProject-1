@@ -15,7 +15,6 @@ exports.submission = function (req, res){
 			res.send('error posting');
 		} else {
 			res.send('post complete');
-			res.redirect('/home');
 		}
 	});
 };
