@@ -9,6 +9,8 @@ var Submission = require('./models/submissionModel');
 var subcontroller = require('./controllers/submission.controller');
 var controller = require('./controllers/user.controller'); //need to add this we're using the method deinfed in user.controller that is being posted to the db from app.js 
 var morgan = require('morgan');
+var multer = require('multer');
+var upload = multer({dest: '../public/uploadedImages/lostDogs'})
 
 var app = express();
 var db = 'mongodb://localhost/dog_project';
@@ -20,14 +22,12 @@ app.use(express.static('public'))			//which page to be displayed (our index.html
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", config.frontEndServer);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Request-Method", "GET POST PUT DELETE");
   next();
 });
-
 
 app.get('/', function(req, res){  //specifies the route that the user goes to when they've loaded up their application
 	return res.render('index.html'); 	  //Because we've set our directory name to public, we can render the index.html and will automatically look in the public directory
@@ -41,6 +41,10 @@ app.get('/', function(req, res){  //specifies the route that the user goes to wh
 // API ROUTES
 
 var apiRoutes = express.Router();				//this defines how things move to and from the mongo database for users
+
+app.post('/lostImg', upload.single'lostDog'), function(req, res, next){
+  res.send('success')
+}
 
 apiRoutes.post('/submission', subcontroller.submission);
 

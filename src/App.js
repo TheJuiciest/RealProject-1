@@ -17,7 +17,7 @@ class App extends Component {
           <h2>Man's Best Friend</h2>
           <Router history={browserHistory}>
             <Route path='/' component={Header}>
-                <IndexRoute component={() => (<div><Home/><Submission/><ImageUpload/></div>)} path="home" />
+                <IndexRoute component={() => (<div><Home/><Submission/><ImageUpload/></div>)} />
                 <Route component={() => (<div><Login/><Register/></div>)} path="login" />
             </Route>
           </Router>

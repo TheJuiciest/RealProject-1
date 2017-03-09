@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 var config = require('../../config');
 
-class ImageUpload extends React.Component {
+class ImageUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {file: '',imagePreviewUrl: ''};
@@ -31,10 +31,16 @@ class ImageUpload extends React.Component {
   }
 
   submitImage() {
+    console.log(this.state.file)
     $.ajax ({
       method: 'POST',
-      url: config.apiServer + '/api/image/',
-      data: {file: this.state.file}
+      url: config.apiSever +'/lostImg', 
+      data: {file: this.state.file},
+      headers: {
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
     })
     .done(function(result){
       console.log(result)
@@ -58,7 +64,7 @@ class ImageUpload extends React.Component {
             onChange={(e)=>this.handleImageChange(e)} />
           <button className="submitButton" 
             type="submit" 
-            onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
+            onClick={this.submitImage.bind(this)}>Upload Image</button>
         </form>
         <div className="imgPreview">
           {$imagePreview}
