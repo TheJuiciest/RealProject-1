@@ -14,7 +14,8 @@ class Submission extends Component {
 			location: "",
 			topicTitle: "",
 			submissionType: "",
-			//photoAdded: false,
+			//file: '',
+			//imagePreviewUrl: '',
 			description: ""
 		};
 	}
@@ -40,6 +41,7 @@ class Submission extends Component {
 	}
 
 	submissionEvent() {
+		var self = this;
 		//some sort of search through the state to check that everything has an answer
 		$.ajax({
 			method: 'POST', 
@@ -49,11 +51,12 @@ class Submission extends Component {
 				location: this.state.location,
 				topicTitle: this.state.topicTitle,
 				submissionType: this.state.submissionType,
-				//photoAdded: this.state.photoAdded,
+				//file: this.state.file,
 				description: this.state.description
 			}
 		})
 		.done(function(result){
+			self.props.reloadSubmissions()
 			console.log(result)
 		})
 	}

@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Register from './components/Register';
 import Submission from './components/Submission';
 import ImageUpload from './components/ImageSubmission';
+import Recent from './components/RecentSubmission';
 
 
 class App extends Component {
@@ -17,7 +18,11 @@ class App extends Component {
           <h2>Man's Best Friend</h2>
           <Router history={browserHistory}>
             <Route path='/' component={Header}>
+<<<<<<< HEAD
                 <IndexRoute component={() => (<div><Home/><Submission/><ImageUpload/></div>)} />
+=======
+                <IndexRoute component={Home} />
+>>>>>>> upstream/master
                 <Route component={() => (<div><Login/><Register/></div>)} path="login" />
             </Route>
           </Router>

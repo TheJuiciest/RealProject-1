@@ -7,7 +7,7 @@ class ImageDrop extends Component {
 		super(props)
 		this.state = {
 			files: []
-		};
+		};	
 	}
 
 	onDrop (acceptedFiles) {
