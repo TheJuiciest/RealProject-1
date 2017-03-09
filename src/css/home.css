@@ -1,0 +1,34 @@
+.submitContainer {
+	position: absolute;
+	right: 200px;
+}
+
+.recentSubmissionContainer{
+	display: block;
+	word-wrap: break-word;
+	width: 650px;
+
+}
+#location {
+
+}
+
+
+#topicTitle {
+	
+}
+
+
+#selectValue {
+
+}
+
+
+.form-control{
+	display: block;
+	overflow: scroll;
+	height: 150px;
+	width: 250px;
+	font-size: 16px;
+}
+

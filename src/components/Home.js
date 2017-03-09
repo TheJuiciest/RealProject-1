@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import Submission from './Submission';
 import ImageUpload from './ImageSubmission';
-import Recent from './RecentSubmission';
+import RecentSubmission from './RecentSubmission';
 
 class Home extends Component {
 	
@@ -31,7 +31,7 @@ class Home extends Component {
 
 	render() {
 		return (
-			<div><Submission reloadSubmissions={this.recentGrab.bind(this)}/><ImageUpload/><Recent submissions={this.state.submissions}/></div>
+			<div className="recentSubmissionContainer"><Submission reloadSubmissions={this.recentGrab.bind(this)}/><ImageUpload/><RecentSubmission submissions={this.state.submissions}/></div>
 		)
 	}
 }
