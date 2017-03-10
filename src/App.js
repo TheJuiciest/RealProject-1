@@ -21,10 +21,7 @@ class App extends Component {
           <h2>Man's Best Friend</h2>
           <Router history={browserHistory}>
             <Route path='/' component={Header}>
-<<<<<<< HEAD
-=======
                 <IndexRoute component={() => (<div><Home/></div>)} />
->>>>>>> 45842c0d2882e4ec1b665328408ed7df5cb4f680
                 <IndexRoute component={Home} />
 
                 <Route component={() => (<div><Login/><Register/></div>)} path="login" />

@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import Submission from './Submission';
-<<<<<<< HEAD
 import RecentSubmission from './RecentSubmission';
-import ImageUpload from './ImageSubmission';
-=======
-//import ImageUpload from './ImageSubmission';
-import RecentSubmission from './RecentSubmission';
-//import ImageUpload from './ImageSubmission';
->>>>>>> 45842c0d2882e4ec1b665328408ed7df5cb4f680
+
+
 //import { browserHistory } from 'react-router';
 
 class Home extends Component {
@@ -58,17 +53,6 @@ class Home extends Component {
   		})
 
 		return (
-<<<<<<< HEAD
-			<div>
-				<button className="logoutButton" value="logout" href="/">Logout!</button>
-				<div className="recentSubmissionContainer">
-					<Submission reloadSubmissions={this.recentGrab.bind(this)}/>
-					<ImageUpload/>
-					<h1>Recent Event Submissions</h1>
-					<RecentSubmission submissions={this.state.submissions}/>
-				</div>
-			</div>
-=======
 			<div>				
 					<button className="logoutButton" value="logout" href="/">Logout!</button>
 					<div className="recentSubmissionContainer">
@@ -76,10 +60,8 @@ class Home extends Component {
 						<h1>Recent Event Submissions</h1>
 						<RecentSubmission submissions={this.state.submissions}/>
 					</div>
-				</div>
-			
-
->>>>>>> 45842c0d2882e4ec1b665328408ed7df5cb4f680
+			</div>
+	
 		)
 	}
 }

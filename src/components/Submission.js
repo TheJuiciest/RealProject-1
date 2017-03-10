@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import $ from 'jquery';
-import ImageUpload from './ImageSubmission';
 var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
 
 
@@ -11,19 +10,12 @@ class Submission extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-<<<<<<< HEAD
-			date: Date,
-			location: "",
-			topicTitle: "",
-			submissionType: "",
-			//imagePreviewUrl: '',
-=======
+
 			date: new Date('2012-04-15'),
 			username:"",
 			location: "",
 			topicTitle: "",
 			submissionType: "",
->>>>>>> 45842c0d2882e4ec1b665328408ed7df5cb4f680
 			description: ""
 		};
 	}
@@ -46,23 +38,6 @@ class Submission extends Component {
 
 	uploadFile(e) {
 		var self = this;
-<<<<<<< HEAD
-		//some sort of search through the state to check that everything has an answer
-		$.ajax({
-			method: 'POST', 
-			url: config.apiServer + '/api/submission',
-			data: {
-				username: this.state.username,
-				date: this.state.date,
-				location: this.state.location,
-				topicTitle: this.state.topicTitle,
-				submissionType: this.state.submissionType,
-				fd: this.props.path,
-				description: this.state.description
-			}
-		})
-		.done(function(result){
-=======
         var fd = new FormData();    
         console.log('dogPhoto', ReactDom.findDOMNode(this.refs.file).files[0])
         fd.append('dogPhoto', ReactDom.findDOMNode(this.refs.file).files[0]);
@@ -83,7 +58,6 @@ class Submission extends Component {
             } 
         })
 	    	.done(function(result){
->>>>>>> 45842c0d2882e4ec1b665328408ed7df5cb4f680
 			self.props.reloadSubmissions()
 			console.log(result)
 		})
@@ -118,13 +92,7 @@ class Submission extends Component {
 						<option value="Current Condition">Current Condition</option>
 						<option value="Community Event">Community Event</option>
 						<option value="Other">Other</option>
-					</select><br/>                
-               		<form ref="uploadForm" className="uploader" encType="multipart/form-data" >
-                   			Image Upload: <input type='text' onChange={e => this.setState({title: e.target.value})} />
-                   			<input ref="file" type="file" name="file" className="upload-file"/>
-                   			<input type="button" ref="button" value="Upload" onClick={this.uploadFile} />
-               		</form>                
-    
+					</select><br/>                       
 					Description<br/><textarea className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
 					<button className="submissionButton" value="Beam it brah"
 						onClick={this.uploadFile.bind(this)}>Beam it brah!</button>

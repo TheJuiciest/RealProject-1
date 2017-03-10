@@ -92,11 +92,6 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage: storage}).single("dogPhoto")
 
-apiRoutes.post('/lostImg', upload, function(req, res){
-  console.log('in request', req.file)
-  res.send('success')
-})
-
 
 apiRoutes.post('/submission', upload, requireLogin, subcontroller.submission);
 
