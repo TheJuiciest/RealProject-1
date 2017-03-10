@@ -34,7 +34,6 @@ class Header extends Component {
 	        </nav>
 	        {this.props.children}
 
-	        Copyright Romeo 2017
 	        </div>
 		)
 	}	
