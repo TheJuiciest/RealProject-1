@@ -10,7 +10,6 @@ import ImageUpload from './components/ImageSubmission';
 import RecentSubmission from './components/RecentSubmission';
 import LostFound from './components/LostFound';
 import Archived from './components/Archived';
-//import FormUpload from './components/FormUpload';
 
 
 class App extends Component {
@@ -21,7 +20,7 @@ class App extends Component {
           <h2>Man's Best Friend</h2>
           <Router history={browserHistory}>
             <Route path='/' component={Header}>
-                <IndexRoute component={() => (<div><ImageUpload/></div>)} />
+                <IndexRoute component={() => (<div><Home/><Submission/><ImageUpload/></div>)} />
                 <IndexRoute component={Home} />
 
                 <Route component={() => (<div><Login/><Register/></div>)} path="login" />
