@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-//import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
 import $ from 'jquery';
 var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
 
@@ -11,11 +11,10 @@ class Submission extends Component {
 		super(props)
 		this.state = {
 			date: new Date('2012-04-15'),
+			username:"",
 			location: "",
 			topicTitle: "",
 			submissionType: "",
-			//file: '',
-			//imagePreviewUrl: '',
 			description: ""
 		};
 	}
@@ -32,35 +31,37 @@ class Submission extends Component {
 		this.setState( { topicTitle: event.target.value} )
 	}
 
-	/*photoChanged(event) {
-		this.setState({ photoAdded: !this.state.photoAdded})
-	} */
-	
 	descriptionChanged(event) {
 		this.setState({ description: event.target.value})
 	}
 
-	submissionEvent() {
+	uploadFile(e) {
 		var self = this;
-		//some sort of search through the state to check that everything has an answer
-		$.ajax({
-			method: 'POST', 
-			url: config.apiServer + '/api/submission',
-			data: {
-				date: this.state.date,
-				location: this.state.location,
-				topicTitle: this.state.topicTitle,
-				submissionType: this.state.submissionType,
-				//file: this.state.file,
-				description: this.state.description
-			}
-		})
-		.done(function(result){
+        var fd = new FormData();    
+        console.log('dogPhoto', ReactDom.findDOMNode(this.refs.file).files[0])
+        fd.append('dogPhoto', ReactDom.findDOMNode(this.refs.file).files[0]);
+        fd.append('topicTitle', this.state.topicTitle);
+        fd.append('date', this.state.date);
+        fd.append('location', this.state.location);
+        fd.append('submission', this.state.submission);
+        fd.append('description', this.state.description);
+        fd.append('token',document.cookie)
+        $.ajax({
+            url: config.apiServer +'/api/submission',
+            data: fd,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function(data){
+                console.log(data);
+            } 
+        })
+	    	.done(function(result){
 			self.props.reloadSubmissions()
 			console.log(result)
 		})
-	}
-	
+        e.preventDefault()
+    }	
 	render() {
 
 		$(".initLoginButton").on('click', function(event){
@@ -71,7 +72,7 @@ class Submission extends Component {
   		
 
 		return (
-			<div>
+		<div>	
 				<div className="logoutContainer">
 					<h1>Submit a Post</h1>
 					<p1>If you'd like to submit a post, please login!</p1><br/>
@@ -79,10 +80,10 @@ class Submission extends Component {
 				</div>
 				<div className="submitContainer"> 
 					<h1>Submit a Post</h1>
-					Date:<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
-					Location:<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
-					Topic:<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
-					Submission Type:<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
+				Date:<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
+			Location:<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
+			   Topic:<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
+	Submission Type:<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
 						<option value="pleaseSelect">Type of Submission Event</option>
 						<option value="Hazard">Hazard</option>
 						<option value="Lost Dog">Lost Dog</option>
@@ -93,7 +94,12 @@ class Submission extends Component {
 					</select><br/>
 					Description<br/><textarea className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
 					<button className="submissionButton" value="Beam it brah"
-						onClick={this.submissionEvent.bind(this)}>Beam it brah!</button>
+						onClick={this.uploadFile.bind(this)}>Beam it brah!</button>
+					<form ref="uploadForm" className="uploader" encType="multipart/form-data" >
+		                  <input type='text' onChange={e => this.setState({title: e.target.value})} value={this.state.title} />
+		                   <input ref="file" type="file" name="file" className="upload-file"/>
+		                   <input type="button" ref="button" value="Upload" onClick={this.uploadFile} />
+	               </form>          
 				</div>
 			</div>
 			);
