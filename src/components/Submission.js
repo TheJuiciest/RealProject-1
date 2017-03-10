@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 //import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import ImageUpload from './ImageSubmission';
 var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
 
 
@@ -10,11 +11,10 @@ class Submission extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			date: new Date('2012-04-15'),
+			date: Date,
 			location: "",
 			topicTitle: "",
 			submissionType: "",
-			//file: '',
 			//imagePreviewUrl: '',
 			description: ""
 		};
@@ -47,11 +47,12 @@ class Submission extends Component {
 			method: 'POST', 
 			url: config.apiServer + '/api/submission',
 			data: {
+				username: this.state.username,
 				date: this.state.date,
 				location: this.state.location,
 				topicTitle: this.state.topicTitle,
 				submissionType: this.state.submissionType,
-				//file: this.state.file,
+				fd: this.props.path,
 				description: this.state.description
 			}
 		})
@@ -90,7 +91,13 @@ class Submission extends Component {
 						<option value="Current Condition">Current Condition</option>
 						<option value="Community Event">Community Event</option>
 						<option value="Other">Other</option>
-					</select><br/>
+					</select><br/>                
+               		<form ref="uploadForm" className="uploader" encType="multipart/form-data" >
+                   			Image Upload: <input type='text' onChange={e => this.setState({title: e.target.value})} />
+                   			<input ref="file" type="file" name="file" className="upload-file"/>
+                   			<input type="button" ref="button" value="Upload" onClick={this.uploadFile} />
+               		</form>                
+    
 					Description<br/><textarea className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
 					<button className="submissionButton" value="Beam it brah"
 						onClick={this.submissionEvent.bind(this)}>Beam it brah!</button>
