@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 //var config = require('../../config');       
 
 
-class Recent extends Component {
+class RecentSubmission extends Component {
 
 
 	render() {
@@ -16,10 +16,9 @@ class Recent extends Component {
 		          })
 		        }
 		        </ul>
-		     
 	    	</div>
 		)
 	}
 }
 
-export default Recent
+export default RecentSubmission

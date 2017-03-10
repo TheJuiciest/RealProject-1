@@ -10,7 +10,7 @@ var subcontroller = require('./controllers/submission.controller');
 var controller = require('./controllers/user.controller'); //need to add this we're using the method deinfed in user.controller that is being posted to the db from app.js 
 var morgan = require('morgan');
 var multer = require('multer');
-var upload = multer({dest: '../public/uploadedImages/lostDogs'})
+var path = require('path')
 
 var app = express();
 var db = 'mongodb://localhost/dog_project';
@@ -42,9 +42,29 @@ app.get('/', function(req, res){  //specifies the route that the user goes to wh
 
 var apiRoutes = express.Router();				//this defines how things move to and from the mongo database for users
 
-app.post('/lostImg', upload.single'lostDog'), function(req, res, next){
-  res.send('success')
+var suffix = {
+  'image/jpeg' : 'jpg',
+  'image/png' : 'png'
 }
+var storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    console.log('directory ',path.join(__dirname, '../public/uploadedImages/lostDogs'))
+    cb(null,path.join(__dirname, '../public/uploadedImages/lostDogs'))
+  },
+  filename: function (req, file, cb){
+    console.log('naming file',  file.fieldname + Date.now() +'.'+ suffix[file.mimetype])
+    cb(null, file.fieldname + Date.now() +'.'+ suffix[file.mimetype] )
+  }
+})
+var upload =(req,res,next)=> {
+  console.log('running middleware')
+ multer({storage: storage}).single("dogPhoto")(req,res,next)
+}
+apiRoutes.post('/lostImg', upload, function(req, res){
+  console.log('in request', req.file)
+  res.send('success')
+})
+
 
 apiRoutes.post('/submission', subcontroller.submission);
 

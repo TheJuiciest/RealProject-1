@@ -6,7 +6,8 @@ var config = require('../../config');       //let's us use our config file, whic
 
 
 class Submission extends Component {
-	
+
+
 	constructor(props){
 		super(props)
 		this.state = {
@@ -64,11 +65,12 @@ class Submission extends Component {
 	render() {
 		return (
 			<div>
+				<div className="submitContainer"> 
 					<h2>Submit a Post</h2>
-					<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
-					<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
-					<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
-					<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
+					Date:<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
+					Location:<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
+					Topic:<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
+					Submission Type:<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
 						<option value="pleaseSelect">Type of Submission Event</option>
 						<option value="Hazard">Hazard</option>
 						<option value="Lost Dog">Lost Dog</option>
@@ -77,9 +79,10 @@ class Submission extends Component {
 						<option value="Community Event">Community Event</option>
 						<option value="Other">Other</option>
 					</select><br/>
-					<input id="description" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
+					Description<br/><textarea className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
 					<button className="submissionButton" value="Beam it brah"
 						onClick={this.submissionEvent.bind(this)}>Beam it brah!</button>
+				</div>
 			</div>
 			);
 	}

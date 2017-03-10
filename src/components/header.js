@@ -23,6 +23,9 @@ class Header extends Component {
 	                  <Link className="myAccount" to="/myaccount">My Account</Link>
 	                </li>
 	                <li className="Nav__item">
+	                  <Link className="archived" to="/archived">Archived</Link>
+	                </li>
+	                <li className="Nav__item">
 	                  <Link className="about" to="/about">About</Link>
 	                </li>
 	              </ul>
