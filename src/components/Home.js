@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import Submission from './Submission';
+import ImageUpload from './ImageSubmission';
+import RecentSubmission from './RecentSubmission';
 //import ImageUpload from './ImageSubmission';
 import RecentSubmission from './RecentSubmission';
 //import { browserHistory } from 'react-router';
@@ -52,6 +54,7 @@ class Home extends Component {
   		})
 
 		return (
+			<div className="recentSubmissionContainer"><Submission reloadSubmissions={this.recentGrab.bind(this)}/><ImageUpload/><RecentSubmission submissions={this.state.submissions}/></div>
 			<div>
 				<button className="logoutButton" value="logout" href="/">Logout!</button>
 				<div className="recentSubmissionContainer">
@@ -60,6 +63,7 @@ class Home extends Component {
 					<RecentSubmission submissions={this.state.submissions}/>
 				</div>
 			</div>
+
 		)
 	}
 }

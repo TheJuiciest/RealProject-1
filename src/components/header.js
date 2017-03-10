@@ -5,7 +5,8 @@ import { Link } from 'react-router'
 
 class Header extends Component {
 	render () {
-		return ( <div>
+		return ( 
+			<div>
 			<nav className="navigate">
 	          <div className="Nav__container">
 	            <div className="Nav__right">

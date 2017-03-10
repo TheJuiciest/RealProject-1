@@ -10,6 +10,7 @@ var subcontroller = require('./controllers/submission.controller');
 var controller = require('./controllers/user.controller'); //need to add this we're using the method deinfed in user.controller that is being posted to the db from app.js 
 var morgan = require('morgan');
 var multer = require('multer');
+var path = require('path');
 
 var app = express();
 var db = 'mongodb://localhost/dog_project';
@@ -21,14 +22,12 @@ app.use(express.static('public'))			//which page to be displayed (our index.html
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", config.frontEndServer);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Request-Method", "GET POST PUT DELETE");
   next();
 });
-
 
 app.get('/', function(req, res){  //specifies the route that the user goes to when they've loaded up their application
 	return res.render('index.html'); 	  //Because we've set our directory name to public, we can render the index.html and will automatically look in the public directory
@@ -43,6 +42,34 @@ app.get('/', function(req, res){  //specifies the route that the user goes to wh
 
 var apiRoutes = express.Router();				//this defines how things move to and from the mongo database for users
 
+
+
+
+var suffix = {
+  'image/jpeg' : 'jpg',
+  'image/png' : 'png'
+}
+var storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    console.log('directory ',path.join(__dirname, '../public/uploadedImages/lostDogs'))
+    cb(null,path.join(__dirname, '../public/uploadedImages/lostDogs'))
+  },
+  filename: function (req, file, cb){
+    console.log('naming file',  file.fieldname + Date.now() +'.'+ suffix[file.mimetype])
+    cb(null, file.fieldname + Date.now() +'.'+ suffix[file.mimetype] )
+  }
+})
+var upload =(req,res,next)=> {
+  console.log('running middleware')
+ multer({storage: storage}).single("dogPhoto")(req,res,next)
+}
+apiRoutes.post('/lostImg', upload, function(req, res){
+  console.log('in request', req.file)
+  res.send('success')
+})
+
+
+apiRoutes.post('/submission', subcontroller.submission);
 
 
 apiRoutes.post('/register', controller.register);

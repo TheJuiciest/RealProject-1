@@ -1,10 +1,13 @@
-.logoutContainer {
+.submitContainer {
 	position: absolute;
 	right: 200px;
 }
-
-
-.submitContainer {
+.imgSubmissionContainer{
+	position: absolute;
+	right: 200px;
+	top: 650px;
+}
+.logoutContainer {
 	position: absolute;
 	right: 200px;
 }
@@ -28,7 +31,6 @@
 #selectValue {
 
 }
-
 .submissionButton {
     background-color: #808080;
     border: none;
@@ -40,7 +42,6 @@
     font-size: 16px;
 }
 
-
 .form-control{
 	display: block;
 	overflow: scroll;
@@ -48,7 +49,6 @@
 	width: 250px;
 	font-size: 16px;
 }
-
 .logoutButton{
 	  background-color: #4CAF50;
     border: none;
@@ -83,4 +83,3 @@ h1 {
 br {
     line-height: 200%;
     }
-

@@ -6,7 +6,7 @@ var config = require('../../config');       //let's us use our config file, whic
 
 
 class Submission extends Component {
-
+	
 	constructor(props){
 		super(props)
 		this.state = {
