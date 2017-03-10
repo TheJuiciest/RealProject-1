@@ -43,6 +43,36 @@ app.get('/', function(req, res){  //specifies the route that the user goes to wh
 var apiRoutes = express.Router();				//this defines how things move to and from the mongo database for users
 
 
+var requireLogin =function (req, res, next) {
+  console.log('requiring password', req.body)
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+
+    // verifies secret and checks exp
+    jwt.verify(token, config.secret, function(err, decoded) {      
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+      } else {
+        // if everything is good, save to request for use in other routes
+        console.log('decoded', decoded)
+        req.decoded = decoded;    
+        next();
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({ 
+        success: false, 
+        message: 'No token provided.' 
+    });
+  }
+};
 
 
 var suffix = {
@@ -59,17 +89,16 @@ var storage = multer.diskStorage({
     cb(null, file.fieldname + Date.now() +'.'+ suffix[file.mimetype] )
   }
 })
-var upload =(req,res,next)=> {
-  console.log('running middleware')
- multer({storage: storage}).single("dogPhoto")(req,res,next)
-}
+
+var upload = multer({storage: storage}).single("dogPhoto")
+
 apiRoutes.post('/lostImg', upload, function(req, res){
   console.log('in request', req.file)
   res.send('success')
 })
 
 
-apiRoutes.post('/submission', subcontroller.submission);
+apiRoutes.post('/submission', upload, requireLogin, subcontroller.submission);
 
 
 apiRoutes.post('/register', controller.register);
@@ -121,37 +150,7 @@ apiRoutes.post('/authenticate', function(req, res) {	//this will create the toke
   });
 });
 
-function requireLogin(req, res, next) {
 
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  // decode token
-  if (token) {
-
-    // verifies secret and checks exp
-    jwt.verify(token, config.secret, function(err, decoded) {      
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
-      } else {
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
-        next();
-      }
-    });
-
-  } else {
-
-    // if there is no token
-    // return an error
-    return res.status(403).send({ 
-        success: false, 
-        message: 'No token provided.' 
-    });
-  }
-};
-
-apiRoutes.post('/submission', requireLogin ,subcontroller.submission);
 
 apiRoutes.get('/users', function(req, res) {  //this gets the users from the user database in mongo and return them as a json object
   User.find({}, function(err, users) {

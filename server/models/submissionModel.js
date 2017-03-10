@@ -3,9 +3,6 @@ var Schema = mongoose.Schema;
 
 
 var SubmissionSchema = new Schema ({
-	username: {
-		type: String,
-	},
 	date: {
 		type: Date
 		// required: true
@@ -23,9 +20,12 @@ var SubmissionSchema = new Schema ({
 		// enum: ['Hazard', 'Lost Dog', 'Found Dog', 'Current Condition', 'Community Event', 'Other'],
 		//required: true
 	},
-	fd: {                
-		type: String, 		 
-	}, 
+	fd: {               
+		type: String	
+	},
+	username: {
+		type: String
+	},
 	description: {
 		type: String
 		//required: true
