@@ -68,6 +68,8 @@ class Submission extends Component {
   			window.location.replace("/login");
   		})
 
+  		
+
 		return (
 			<div>
 				<div className="logoutContainer">

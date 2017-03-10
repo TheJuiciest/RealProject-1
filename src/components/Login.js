@@ -50,7 +50,7 @@ class Login extends Component {
 					<h2>Login Your Life</h2>
 					<input value={this.state.username} onChange={this.usernameChanged.bind(this)} placeholder="Enter Username" /><br/>
 					<input value={this.state.password} onChange={this.passwordChanged.bind(this)} type="password" placeholder="Enter Password" /><br/>
-					<button className="loginButton" value="Let's Get To Postin!"
+					<button className="loginButton" value="postMe"
 					onClick={this.loginEvent.bind(this)}>Log Me On In</button>
 			</div>
 			);

@@ -43,7 +43,7 @@ app.get('/', function(req, res){  //specifies the route that the user goes to wh
 
 var apiRoutes = express.Router();				//this defines how things move to and from the mongo database for users
 
-apiRoutes.post('/submission', subcontroller.submission);
+
 
 apiRoutes.post('/register', controller.register);
 
@@ -94,7 +94,7 @@ apiRoutes.post('/authenticate', function(req, res) {	//this will create the toke
   });
 });
 
-apiRoutes.use(function(req, res, next) {
+function requireLogin(req, res, next) {
 
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -122,7 +122,9 @@ apiRoutes.use(function(req, res, next) {
         message: 'No token provided.' 
     });
   }
-});
+};
+
+apiRoutes.post('/submission', requireLogin ,subcontroller.submission);
 
 apiRoutes.get('/users', function(req, res) {  //this gets the users from the user database in mongo and return them as a json object
   User.find({}, function(err, users) {

@@ -7,6 +7,7 @@ exports.submission = function (req, res){
 	newSubmission.location = req.body.location;
 	newSubmission.topicTitle = req.body.topicTitle;
 	newSubmission.submissionType = req.body.submissionType;
+	newSubmission.username = req.decoded._doc.username
 	//newPost.img = req.body.img;
 	newSubmission.description = req.body.description;
 

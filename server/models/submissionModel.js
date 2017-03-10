@@ -24,6 +24,7 @@ var SubmissionSchema = new Schema ({
 		type: String, 		 '/uploadedImages/lostDogs/romeo.jpg'
 		required: false 
 	} */
+	username: String,
 	description: {
 		type: String
 		//required: true

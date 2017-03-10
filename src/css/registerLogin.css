@@ -1,0 +1,48 @@
+board{
+    padding: 75px;
+}
+
+.container {
+    background-color: #C0C0C0 ;
+   padding-top: 10px;
+   padding-bottom: 20px;
+   padding-left: 50px;
+   padding-right: 20px;
+   border-radius: 15px;
+   border-color:#d2d2d2 ;
+   border-width: 5px;
+   box-shadow:0 1px 0 #cfcfcf ;
+  margin: 0px 550px 0px 0px;
+  box-shadow:0 5px 0 #cfcfcf
+
+}
+
+h2 {
+    font-family: sans-serif;
+}
+
+.imgs{
+    size: 40px;
+}
+
+.loginButton{
+    font-family: Monaco;
+    color: white;
+    background-color: #561111 ;
+    border-radius: 5px;
+}
+
+.loginButton.registerButton:hover {
+    background: black;
+}
+
+.registerButton {
+    font-family: Monaco;
+    color: white;
+    background-color: #561111 ;
+    border-radius: 5px;
+}
+
+.registerButton:hover {
+    background-color: black;
+}
