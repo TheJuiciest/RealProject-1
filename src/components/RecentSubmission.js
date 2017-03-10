@@ -12,7 +12,7 @@ class RecentSubmission extends Component {
 				<ul>
 		        {this.props.submissions.map(function(submission,index) {
 		        	console.log(submission)
-		            return <li key={index}>{submission.date}{submission.location}{submission.topicTitle}{submission.submissionType}{submission.description}</li>
+		            return <li key={index}>{submission.date}    {submission.location}    {submission.topicTitle}    {submission.submissionType}    {submission.description}</li>
 		          })
 		        }
 		        </ul>

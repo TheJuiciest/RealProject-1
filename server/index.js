@@ -9,6 +9,7 @@ var Submission = require('./models/submissionModel');
 var subcontroller = require('./controllers/submission.controller');
 var controller = require('./controllers/user.controller'); //need to add this we're using the method deinfed in user.controller that is being posted to the db from app.js 
 var morgan = require('morgan');
+var multer = require('multer');
 
 var app = express();
 var db = 'mongodb://localhost/dog_project';

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import Submission from './Submission';
-import ImageUpload from './ImageSubmission';
+//import ImageUpload from './ImageSubmission';
 import RecentSubmission from './RecentSubmission';
+//import { browserHistory } from 'react-router';
 
 class Home extends Component {
 	
@@ -25,13 +26,40 @@ class Home extends Component {
 	}
 				//submissions.sort(function(a, b){
 				//return b.Date-a.Date;
-   componentWillMount() {
+    componentWillMount() {
    	this.recentGrab()
-   }
+    }
 
 	render() {
+
+		if(!document.cookie) {
+			$('.loginButton').show();
+			$('.submitContainer').hide();
+			$('.logoutButton').hide();
+			$('.logoutContainer').show();
+		} else if (document.cookie) {
+			$('.logoutButton').show();
+			$('.loginButton').hide();
+			$('.submitContainer').show();
+			$('.logoutContainer').hide();
+		}
+
+
+		$(".logoutButton").on('click', function(event){
+  			event.preventDefault();
+  			document.cookie = "";
+  			window.location.replace("/");
+  		})
+
 		return (
-			<div className="recentSubmissionContainer"><Submission reloadSubmissions={this.recentGrab.bind(this)}/><ImageUpload/><RecentSubmission submissions={this.state.submissions}/></div>
+			<div>
+				<button className="logoutButton" value="logout" href="/">Logout!</button>
+				<div className="recentSubmissionContainer">
+					<Submission reloadSubmissions={this.recentGrab.bind(this)}/>
+					<h1>Recent Event Submissions</h1>
+					<RecentSubmission submissions={this.state.submissions}/>
+				</div>
+			</div>
 		)
 	}
 }

@@ -7,11 +7,10 @@ var config = require('../../config');       //let's us use our config file, whic
 
 class Submission extends Component {
 
-
 	constructor(props){
 		super(props)
 		this.state = {
-			date: Date,
+			date: new Date('2012-04-15'),
 			location: "",
 			topicTitle: "",
 			submissionType: "",
@@ -63,10 +62,21 @@ class Submission extends Component {
 	}
 	
 	render() {
+
+		$(".initLoginButton").on('click', function(event){
+  			event.preventDefault();
+  			window.location.replace("/login");
+  		})
+
 		return (
 			<div>
+				<div className="logoutContainer">
+					<h1>Submit a Post</h1>
+					<p1>If you'd like to submit a post, please login!</p1><br/>
+					<button className="initLoginButton" value="login" href="/">Login!</button>
+				</div>
 				<div className="submitContainer"> 
-					<h2>Submit a Post</h2>
+					<h1>Submit a Post</h1>
 					Date:<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
 					Location:<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
 					Topic:<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>

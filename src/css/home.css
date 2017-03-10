@@ -1,3 +1,9 @@
+.logoutContainer {
+	position: absolute;
+	right: 200px;
+}
+
+
 .submitContainer {
 	position: absolute;
 	right: 200px;
@@ -23,6 +29,17 @@
 
 }
 
+.submissionButton {
+    background-color: #808080;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 
 .form-control{
 	display: block;
@@ -32,3 +49,37 @@
 	font-size: 16px;
 }
 
+.logoutButton{
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    right: 100px;
+}
+
+.initLoginButton{
+	background-color: #808080;;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    right: 100px;
+}
+
+h1 {
+    color: maroon;
+    margin-left: 40px;
+} 
+
+br {
+        line-height: 200%;
+    }

@@ -32,8 +32,15 @@ class Login extends Component {
 				password: this.state.password
 			}
 		})
-		.done(function(result){
-			console.log(result)
+		.done(function(data){
+			document.cookie = data.token;
+			if (data.token) {
+				alert("Log in successful!");
+				window.location.replace("/");
+			} else {
+				alert("Something wasn't entered correctly.");
+			} 
+				console.log(data);
 		})
 	}
 	
