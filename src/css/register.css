@@ -1,0 +1,86 @@
+.board{
+    padding: 75px;
+}
+
+.board .container {
+   background-color: #C0C0C0 ;
+   padding-top: 10px;
+   padding-bottom: 20px;
+   padding-left: 20px;
+   padding-right: 20px;
+   border-radius: 15px;
+   border-color:#d2d2d2 ;
+   border-width: 5px;
+   box-shadow:0 1px 0 #cfcfcf ;
+   margin: 0px 550px 0px 0px;
+   box-shadow:0 5px 0 #cfcfcf
+
+}
+
+
+h2 {
+    font-family: sans-serif;
+}
+
+.imgs{
+    size: 40px;
+}
+
+.logger{  
+
+    margin: 150px;
+    position:fixed; bottom:300px; right: 596px;
+    font-size: 30px;
+    background-color: #C0C0C0 ;
+    padding: 0px 350px 5px 25px;
+    border-radius: 5px;
+    
+}
+
+.reggy{
+    margin: 150px;
+    position:fixed; bottom:300px;
+    font-size: 30px;
+    background-color: #C0C0C0 ;
+    padding: 0px 33px 5px 0px;
+    border-radius: 5px;
+    position: absolute; left: 350px;
+
+}
+
+.reggy:hover {
+    color: #721010 ;
+}
+
+.logger:hover {
+    color: #721010 ;
+    
+}
+
+.loginButton{
+    font-family: Monaco;
+    color: white;
+    background-color: #561111 ;
+    border-radius: 5px;
+}
+
+.loginButton:hover {
+    background: black;
+
+}
+
+.registerButton {
+    font-family: Monaco;
+    color: white;
+    background-color: #561111 ;
+    border-radius: 5px;
+}
+
+.registerButton:hover {
+    background-color: black;
+}
+
+html {
+  background-image: url("http://www.grizzlykennels.com/wp-content/uploads/2014/04/406006_1280x720.jpg");
+  background-size: cover;
+}

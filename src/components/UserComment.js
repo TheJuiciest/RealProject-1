@@ -1,8 +1,73 @@
-import React, {Component} from 'react';
-import $ from 'jquery';
+/*import React, {Component} from 'react';
+import $ from 'jquery'; 
 var config = require('../../config');  
 
-var UserComment = React.createClass({
+
+class UserComment extends Component {
+
+  constructor(props) {
+    super(props) 
+      this.state = {
+        username: "",
+        commentText: "",
+        date: Date.now()
+      }
+  }
+
+  commentSubmit(event) {
+    var comments = this.state.commentText;
+    var newComments = comments.concat([comment]);
+    this.setState({commentText: event.target.value});
+  }
+
+  displayComment(e) {
+    var self = this;
+    var id = 
+    $.ajax({
+        url: config.apiServer +'/api/comment',
+        //dataType: 'json',
+        type: 'POST',
+        data: {
+          username: this.state.username,
+          commentText: this.state.commentText,
+          date: this.state.date
+        },
+        success: function(data) {
+          console.log(data);
+        }
+    })
+        .done(function(result){
+        self.props.reloadComments()
+        console.log(result)
+    })
+      e.preventDefault()
+  }
+
+
+
+  render() {
+    return (
+      <div className="commentBox">
+        Hello, world! I am a CommentBox.
+        <h1>Comments</h1>
+      </div>
+    );
+  }
+}
+
+  loadCommentsFromServer() {
+    $.ajax({
+      url: config.apiServer +'/api/comment'
+    })
+  }
+
+}
+
+
+
+
+
+var CommentBox = React.createClass({
   getInitialState: function() {
     return {data: []};
   },
@@ -13,10 +78,10 @@ var UserComment = React.createClass({
     // not use Date.now() for this and would have a more robust system in place.
     comment.id = Date.now();
     var newComments = comments.concat([comment]);
-    this.setState({data: newComments});
+    this.setState({data: newComments}); 
 
     $.ajax({
-      url: this.props.url,
+      url: config.apiServer +'/api/comment',
       dataType: 'json',
       type: 'POST',
       data: comment,
@@ -25,27 +90,30 @@ var UserComment = React.createClass({
       }.bind(this),
       error: function(xhr, status, err) {
         this.setState({data: comments});
-        console.error(this.props.url, status, err.toString());
+        console.error(config.apiServer +'/api/comment', status, err.toString()); 
       }.bind(this)
     });
   },
+
   loadCommentsFromServer: function() {
     $.ajax({
-      url: this.props.url,
+      url: config.apiServer +'/api/comment',
       dataType: 'json',
       cache: false,
       success: function(data) {
         this.setState({data: data});
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
+        console.error(config.apiServer +'/api/comment', status, err.toString()); 
       }.bind(this)
     });
   },
+
   componentDidMount: function() {
     this.loadCommentsFromServer();
     setInterval(this.loadCommentsFromServer, this.props.pollInterval);
   },
+
   handleDelete: function(id) {
     var comments = this.state.data;
     var newComments = [];
@@ -62,7 +130,7 @@ var UserComment = React.createClass({
     this.setState({data: newComments});
 
     $.ajax({
-      url: this.props.url,
+      url: config.apiServer +'/api/comment',
       dataType: 'json',
       type: 'DELETE',
       data: commentToDelete,
@@ -71,7 +139,7 @@ var UserComment = React.createClass({
       }.bind(this),
       error: function(xhr, status, err) {
         this.setState({data: comments});
-        console.error(this.props.url, status, err.toString());
+        console.error(config.apiServer +'/api/comment', status, err.toString()); -propsURL?
       }.bind(this)
     });
   },
@@ -79,10 +147,107 @@ var UserComment = React.createClass({
     return (
       <div className="commentBox">
         Hello, world! I am a CommentBox.
-
         <h1>Comments</h1>
-        <CommentList data={this.state.data} onCommentDelete={this.handleDelete} />
+        <CommentList data={this.state.commentSubmit} onCommentDelete={this.handleDelete} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
     );
   }
+});
+
+var CommentList = React.createClass({
+  handleDelete: function(id) {
+    console.log('handleDelete2 ' + id);
+    this.props.onCommentDelete(id);
+  },
+  render: function() {
+    var commentNodes = this.props.data.map(function(comment) {
+      var handle_delete = this.handleDelete.bind(this, comment.id);
+
+      return (
+        <Comment username={comment.username} key={comment.id} onCommentDelete={handle_delete}>
+          {comment.text}
+        </Comment>
+      );
+    }, this);
+    return (
+      <div className="commentList">
+        {commentNodes}
+      </div>
+    );
+  }
+});
+
+var CommentForm = React.createClass({
+  getInitialState: function() {
+    return {username: '', text: ''};
+  },
+  handleUsernameChange: function(e) {
+    this.setState({username: e.target.value});
+  },
+  handleTextChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var username = this.state.username.trim();
+    var text = this.state.text.trim();
+    if (!text || !username) {
+      return;
+    }
+    this.props.onCommentSubmit({username: username, text: text});
+    this.setState({username: '', text: ''});
+  },
+  render: function() {
+    return (
+      <form className="commentForm" onSubmit={this.handleSubmit}>
+        <input 
+            type="text" 
+            placeholder="Your name" 
+            value={this.state.username} 
+            onChange={this.handleUsernameChange} 
+        />
+        <input 
+            type="text" 
+            placeholder="Say something..." 
+            value={this.state.text}
+            onChange={this.handleTextChange}
+        />
+        <input type="submit" value="Post" />
+      </form>
+    );
+  }
+});
+
+var Comment = React.createClass({
+  rawMarkup: function() {
+    var md = new Remarkable();
+    var rawMarkup = md.render(this.props.children.toString());
+    return { __html: rawMarkup };
+  },
+
+  handleDelete: function(e) {
+    e.preventDefault();
+    console.log("handleDelete");
+    this.props.onCommentDelete();
+  },
+
+  render: function() {
+    var md = new Remarkable();
+    return (
+      <div className="comment">
+        <h2 className="commentUsername">
+          {this.props.username}
+        </h2>
+        <span dangerouslySetInnerHTML={this.rawMarkup()} />
+        <button onClick={this.handleDelete}>Delete</button>
+      </div>
+    );
+  }
+});
+
+
+ReactDOM.render(
+  <CommentBox url="/api/comment" pollInterval={2000} />,
+  document.getElementById('root')
+);
