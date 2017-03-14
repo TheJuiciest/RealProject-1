@@ -15,7 +15,7 @@ class Home extends Component {
 		}
 	}
 
-	recentGrab() {
+	recentGrabPosts() {
 		var me = this;
 		$.ajax({
 			method: 'GET',
@@ -28,7 +28,7 @@ class Home extends Component {
 				//submissions.sort(function(a, b){
 				//return b.Date-a.Date;
     componentWillMount() {
-   	this.recentGrab()
+   	this.recentGrabPosts()
     }
 
 	render() {
@@ -56,7 +56,7 @@ class Home extends Component {
 			<div>				
 					<button className="logoutButton" value="logout" href="/">Logout!</button>
 					<div className="recentSubmissionContainer">
-						<Submission reloadSubmissions={this.recentGrab.bind(this)}/>
+						<Submission reloadSubmissions={this.recentGrabPosts.bind(this)}/>
 						<h1>Recent Event Submissions</h1>
 						<RecentSubmission submissions={this.state.submissions}/>
 					</div>

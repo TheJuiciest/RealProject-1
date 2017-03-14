@@ -1,57 +1,12 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
+import moment from 'moment'
 
-//var config = require('../../config');       
+var config = require('../../config');       
 
 
 
 class RecentSubmission extends Component {
-
-	constructor(props) {
-    super(props) 
-      this.state = {
-        showCommentBox: false
-        /*username: "",
-        commentText: "",
-        date: Date.now() */
-      }
-    }
-
-	 /*commentSubmit(event) {
-	   var comments = this.state.commentText;
-	   var newComments = comments.concat([comment]);
-	   this.setState({commentText: event.target.value});
-	}
-
-	 displayComment(e) {
-	   var self = this;
-	   var id = {this.props.submission("submissionId")};
-	   var body = {token: document.cookie}
-	   $.ajax({
-	       url: config.apiServer +'/api/comment' + id,
-	       type: 'POST',
-	       data: {
-	         username: this.state.username,
-	         commentText: this.state.commentText,
-	         date: this.state.date
-	       },
-	       success: function(data) {
-	         console.log(data);
-	       }
-	   })
-	       .done(function(result){
-	       self.props.reloadComments()
-	       console.log(result)
-	    })
-	    e.preventDefault() 
-  } */
-
-	onClick(e) {
-        var self = this;
-        e.preventDefault();
-        this.setState({ showCommentBox: !this.state.showCommentBox });
-
-    }
 
 	render() {
 
@@ -60,13 +15,7 @@ class RecentSubmission extends Component {
 				<ul>
 		        {this.props.submissions.map((submission) => <RecentSubmissionItem submission={submission}/>)}
 		        </ul>
-		        <button className="commentButton" value="comment" onClick={this.onClick.bind(this)}>Leave a Comment</button>
-		            { this.state.showCommentBox && <CommentBox /> }
 	    	</div>
-	    	/*<div>
-	    		<button className="commentButton" value="comment">Leave a Comment</button>
-		        <textarea className="commentBox" value="commentInput" placeholder="Comment on Submission"</textarea>
-		    </div> */
 		)
 	}
 }
@@ -83,22 +32,65 @@ class RecentSubmissionItem extends Component {
         this.setState({ showCommentBox: !this.state.showCommentBox });
 
     }
+
+    formatImg(img){
+    	const imgStyle={height: '100px', width: '100px'}
+    	return img ? <img style={imgStyle} src={config.frontEndServer + img.split('public')[1]}/> : '';
+    }
+
 	render(){
-		 const { username, date, location, topicTitle, submissionType, description, fd }= this.props.submission
-		 return <li key={fd}>{username}   {date}   {location}    {topicTitle}    {submissionType}    {description} {fd}<br/>
+		 const { username, date, location, topicTitle, submissionType, description, fd, comments, _id}= this.props.submission;
+		 console.log(comments[0])
+		 return <li key={fd}>{username}   {moment(date).format('MMMM Do YYYY')}   {location}    {topicTitle}    {submissionType}    {description} {this.formatImg(fd)} {comments.map(comment => <Comment comment={comment}/>)} <br/>
 		            		<button className="commentButton" onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>	
-		            		{ this.state.showCommentBox && <CommentBox /> }
+		            		{ this.state.showCommentBox && <CommentBox submissionId={_id}/> }
 		            	  </li>
 	}
 }
 
+class Comment extends Component {
+
+	render(){
+		const {_user, text} = this.props.comment
+		const userStyle = { color: 'hotpink'}
+		return <div><span style={userStyle}>{_user.username}: </span>{text}</div>
+	}
+}
 
 class CommentBox extends Component {
+    
+	constructor(props) {
+    super(props) 
+      this.state = {
+        text: ""
+      }
+    }
+
+	textChanged(event) {
+		this.setState( {text: event.target.value} )
+	}
+
+
+	handleCommentInput() {
+		$.ajax({
+			method: 'POST',
+			url: config.apiServer + '/api/comment',
+			data: {
+				token: document.cookie,
+				text: this.state.text,
+				submission: this.props.submissionId
+			}
+		})
+		.done(function(result){
+			console.log(result)
+		})
+	}
+
     render() {
         return (
             <div> 
-            	<textarea className="commentBox" />
-            	<button className="sendComment" value="sendInput">Post Comment</button> 
+            	<textarea className="commentBox" value={this.state.text} onChange={this.textChanged.bind(this)} placeholder="comment here about your stupid dog" />
+            	<button className="sendComment" value="sendInput" onClick={this.handleCommentInput.bind(this)}>Post Comment</button> 
             </div>
         )
     }
