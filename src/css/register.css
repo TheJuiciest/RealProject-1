@@ -4,22 +4,29 @@
 
 .board .container {
    background-color: #C0C0C0 ;
-   padding-top: 10px;
+   padding-top: 0px;
    padding-bottom: 20px;
    padding-left: 20px;
-   padding-right: 20px;
+   padding-right: 10px;
    border-radius: 15px;
    border-color:#d2d2d2 ;
    border-width: 5px;
    box-shadow:0 1px 0 #cfcfcf ;
-   margin: 0px 550px 0px 0px;
-   box-shadow:0 5px 0 #cfcfcf
+   margin: 0px 575px 0px 0px;
+   box-shadow:0 5px 0 #cfcfcf;
+   position: relative; left: 290px;
 
 }
 
 
 h2 {
     font-family: sans-serif;
+    text-align: center;
+
+} 
+
+input{
+  position: relative; left: 202px;
 }
 
 .imgs{
@@ -28,23 +35,26 @@ h2 {
 
 .logger{  
 
-    margin: 150px;
-    position:fixed; bottom:300px; right: 596px;
+    margin: 150px 0px 150px 0px; 
+
+    position:fixed; bottom:290px; right: 450px;
     font-size: 30px;
     background-color: #C0C0C0 ;
-    padding: 0px 350px 5px 25px;
+    padding: 0px 50px 5px 50px; /* 50 was 350 first*/
     border-radius: 5px;
     
 }
 
+
 .reggy{
     margin: 150px;
-    position:fixed; bottom:300px;
+    position:fixed; bottom:290px;
     font-size: 30px;
     background-color: #C0C0C0 ;
-    padding: 0px 33px 5px 0px;
+    padding: 0px 20px 5px 50px; /* 175 was 5 first*/
     border-radius: 5px;
-    position: absolute; left: 350px;
+    position: absolute; left: 352px;
+
 
 }
 
@@ -62,6 +72,12 @@ h2 {
     color: white;
     background-color: #561111 ;
     border-radius: 5px;
+
+}
+
+button{
+    position: absolute; left: 220px;
+
 }
 
 .loginButton:hover {
