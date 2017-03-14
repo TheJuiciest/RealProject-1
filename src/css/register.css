@@ -95,8 +95,3 @@ button{
 .registerButton:hover {
     background-color: black;
 }
-
-html {
-  background-image: url("http://www.grizzlykennels.com/wp-content/uploads/2014/04/406006_1280x720.jpg");
-  background-size: cover;
-}

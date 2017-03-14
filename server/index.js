@@ -5,19 +5,20 @@ var jwt    = require('jsonwebtoken');     //let's us use webtokens
 var config = require('../config');       //let's us use our config file, which connects us to mongo user database
 var path = require('path');
 var User = require('./models/user.model');
-var Submission = require('./models/submissionModel');
+var { Submission, Comment }= require('./models/submissionModel');
 var subcontroller = require('./controllers/submission.controller');
 var controller = require('./controllers/user.controller'); //need to add this we're using the method deinfed in user.controller that is being posted to the db from app.js 
+var commentController = require('./controllers/comment.controller');
 var morgan = require('morgan');
 var multer = require('multer');
 var path = require('path');
+
 
 var app = express();
 var db = 'mongodb://localhost/dog_project';
 
 mongoose.connect(db)
 
-app.use(express.static('public'))			//which page to be displayed (our index.html)
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -28,6 +29,8 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Request-Method", "GET POST PUT DELETE");
   next();
 });
+
+app.use(express.static('public'))     //which page to be displayed (our index.html)
 
 app.get('/', function(req, res){  //specifies the route that the user goes to when they've loaded up their application
 	return res.render('index.html'); 	  //Because we've set our directory name to public, we can render the index.html and will automatically look in the public directory
@@ -95,15 +98,19 @@ var upload = multer({storage: storage}).single("dogPhoto")
 
 apiRoutes.post('/submission', upload, requireLogin, subcontroller.submission);
 
+apiRoutes.post('/comment', requireLogin, commentController.comment);
+
 
 apiRoutes.post('/register', controller.register);
 
 /*apiRoutes.post('/comment', requireLogin, subcontroller.comment); */
 
 apiRoutes.get('/submissions', function(req, res) {	//this gets the submission from the user database in mongo and return them as a json object
-  Submission.find({}, function(err, submissions) {
-    res.json(submissions);
-  });
+  Submission.find({})
+      .populate({path:'comments',  populate: { path: '_user', select: 'username' }})
+      .exec(function(err, submissions) {
+        res.json(submissions);
+      });
 });   
 
 // API ROUTES -------------------

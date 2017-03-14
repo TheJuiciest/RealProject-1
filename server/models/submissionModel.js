@@ -1,35 +1,58 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var commentSchema = new Schema ({
+	_user: {
+		type: Schema.Types.ObjectId, 
+		ref: 'User'
+	},
+	text: {
+		type: String
+	},
+	date: Date,
+	_submission: {
+		type: Schema.Types.ObjectId,
+		ref: 'Submission'
+	}
+});
 
 
 var SubmissionSchema = new Schema ({
 	date: {
-		type: Date
-		// required: true
+		type: Date,
+		required: true
 	},
 	location: {
-		type: String
-		//required: false
+		type: String,
+		required: false
 	},
 	topicTitle: {
-		type: String
-		//required: true
+		type: String,
+		required: true
 	},
 	submissionType: {
-		type: String
+		type: String,
 		// enum: ['Hazard', 'Lost Dog', 'Found Dog', 'Current Condition', 'Community Event', 'Other'],
-		//required: true
+		required: true
 	},
 	fd: {               
-		type: String	
+		type: String,	
+		required: false
 	},
 	username: {
 		type: String
 	},
 	description: {
-		type: String
-		//required: true
-	}
+		type: String,
+		required: true
+	},
+	comments: [{ 
+		type: Schema.Types.ObjectId,
+		ref: 'comment'
+	}]
 });
 
-module.exports = mongoose.model('Submission', SubmissionSchema);
+
+var Comment = mongoose.model('comment', commentSchema);
+var Submission = mongoose.model('Submission', SubmissionSchema);
+
+module.exports = { Comment, Submission}
