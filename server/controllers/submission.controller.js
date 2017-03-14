@@ -7,8 +7,8 @@ exports.submission = function (req, res){
 	newSubmission.location = req.body.location;
 	newSubmission.topicTitle = req.body.topicTitle;
 	newSubmission.submissionType = req.body.submissionType;
-	newSubmission.username = req.decoded._doc.username
-	newSubmission.fd = req.file.path
+	newSubmission.username = req.decoded._doc.username; //This is derived from the access token by the middleware
+	newSubmission.fd = req.file.path || null;
 	newSubmission.description = req.body.description;
 
 	newSubmission.save(function(err, post){

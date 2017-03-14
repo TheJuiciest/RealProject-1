@@ -93,13 +93,13 @@ class Submission extends Component {
 						<option value="Other">Other</option>
 					</select><br/>
 					Description<br/><textarea className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
+						<form ref="uploadForm" className="uploader" encType="multipart/form-data" >
+		                  <input type='text' onChange={e => this.setState({title: e.target.value})} value={this.state.title} />
+		                  <input ref="file" type="file" name="file" className="upload-file"/>
+	               </form>        
 					<button className="submissionButton" value="Beam it brah"
 						onClick={this.uploadFile.bind(this)}>Beam it brah!</button>
-					<form ref="uploadForm" className="uploader" encType="multipart/form-data" >
-		                  <input type='text' onChange={e => this.setState({title: e.target.value})} value={this.state.title} />
-		                   <input ref="file" type="file" name="file" className="upload-file"/>
-		                   <input type="button" ref="button" value="Upload" onClick={this.uploadFile} />
-	               </form>          
+         
 				</div>
 			</div>
 			);
