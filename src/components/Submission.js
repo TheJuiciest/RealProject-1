@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import $ from 'jquery';
+//import PlacesAutocomplete, { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
 
 
@@ -10,6 +11,7 @@ class Submission extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
+
 			date: new Date('2012-04-15'),
 			username:"",
 			location: "",
@@ -17,7 +19,18 @@ class Submission extends Component {
 			submissionType: "",
 			description: ""
 		};
+		//this.onChange = (location) => this.setState({ location })
 	}
+
+	/*locationChanged(event) {
+    	this.setState( { location: event.target.value } )
+
+    	geocodeByAddress(location,  (err, { lat, lng }) => {
+      		if (err) { console.log('Oh no!', err) }
+
+      		console.log(`Yay! got latitude and longitude for ${location}`, { lat, lng })
+    })
+  }*/
 
 	dateChanged(event) {
 		this.setState( { date: event.target.value} )
@@ -25,7 +38,7 @@ class Submission extends Component {
 	
 	locationChanged(event) {
 		this.setState( { location: event.target.value})
-	}
+	} 
 
 	topicTitleChanged(event) {
 		this.setState( { topicTitle: event.target.value} )
@@ -81,9 +94,9 @@ class Submission extends Component {
 				<div className="submitContainer"> 
 					<h1>Submit a Post</h1>
 				Date:<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
-			Location:<input id="location" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event postsubmission?" /><br/>
+			Location:<input id="topicTitle" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event" /><br/>
 			   Topic:<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
-	Submission Type:<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
+	 Submission Type:<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
 						<option value="pleaseSelect">Type of Submission Event</option>
 						<option value="Hazard">Hazard</option>
 						<option value="Lost Dog">Lost Dog</option>
@@ -91,7 +104,7 @@ class Submission extends Component {
 						<option value="Current Condition">Current Condition</option>
 						<option value="Community Event">Community Event</option>
 						<option value="Other">Other</option>
-					</select><br/>
+					</select><br/>                       
 					Description<br/><textarea className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
 						<form ref="uploadForm" className="uploader" encType="multipart/form-data" >
 		                  <input type='text' onChange={e => this.setState({title: e.target.value})} value={this.state.title} />

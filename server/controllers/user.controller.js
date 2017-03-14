@@ -16,7 +16,7 @@ exports.register = function(req, res){  //Supplies the logic of being able to re
 		res.send('error registering user');
 		}else{
 		 //console.log(user);				//this will console log all of the model properties of each user that signs up
-		 res.redirect('/home');	
+		 res.send('Register sucess!');	
 		}
 	});							//grabbed references of the user props from our view, we need to save them
 };

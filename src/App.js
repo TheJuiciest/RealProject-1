@@ -10,6 +10,8 @@ import Submission from './components/Submission';
 import RecentSubmission from './components/RecentSubmission';
 import LostFound from './components/LostFound';
 import Archived from './components/Archived';
+import Enter from './components/Enter';
+
 
 
 class App extends Component {
@@ -23,7 +25,7 @@ class App extends Component {
                 <IndexRoute component={() => (<div><Home/></div>)} />
                 <IndexRoute component={Home} />
 
-                <Route component={() => (<div><Login/><Register/></div>)} path="login" />
+                <Route component={Enter} path="login" />
                 <Route component={LostFound} path="lostandfound" />
                 <Route component={Archived} path="archived" />
             </Route>

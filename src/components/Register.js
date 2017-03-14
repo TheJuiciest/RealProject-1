@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 //import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import '../css/register.css';
 var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
 
 
@@ -56,7 +57,16 @@ class Register extends Component {
 	}
 	
 	render() {
+
+		$(".registerButton").on('click', function(event){
+  			event.preventDefault();
+  			window.location.replace("/");
+  		})
+
 		return (
+			
+			<div className="board">
+			<div className="container">
 			<div>
 					<h2>Register Your Life</h2>
 					<input value={this.state.firstname} onChange={this.firstnameChanged.bind(this)} placeholder="First Name" /><br/>
@@ -66,6 +76,8 @@ class Register extends Component {
 					<input value={this.state.password} onChange={this.passwordChanged.bind(this)} type="password" placeholder="Enter Password" /><br/>
 					<button className="registerButton" value="Let's Get To It Sparky!"
 						onClick={this.registerEvent.bind(this)}>Register Me On Down!</button>
+			</div>
+			</div>
 			</div>
 			);
 	}

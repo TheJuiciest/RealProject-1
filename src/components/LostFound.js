@@ -33,7 +33,7 @@ class LostFound extends Component {
 	render() {
 		return (
 	    	<div>
-	    		This is our lost and found page
+	    		This is our lost and found page	
 				<ul>
 		        {this.state.submissions.map(function(submission,index) {
 		        	console.log(submission)
