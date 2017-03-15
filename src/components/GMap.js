@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import infobox from '../maps/infobox'
+import moment from 'moment'
 
 var google = window.google;
 var refreshIntervalId;
+var InfoBox
 
 
 class GMap extends React.Component {
   constructor(props){
     super(props);
-    this.state = { zoom: 10, googleLoaded: window.google };
-    this.markers = []
-    this.infoWindows = []
+    this.state = { zoom: 12, googleLoaded: window.google };
+    this.markers = [];
+    //this.infoWindows = []
+    this.infoBoxes = []
   }
   static propTypes() {
   	initialCenter: React.PropTypes.objectOf(React.PropTypes.number).isRequired
@@ -23,7 +27,6 @@ class GMap extends React.Component {
     var mapStyle={height: 400}
     return <div className="GMap">
       <div className='UpdatedText'>
-        <p>Current Zoom: { this.state.zoom }</p>
       </div>
       <div style={mapStyle} className='GMap-canvas' ref="mapCanvas">
       </div>
@@ -50,12 +53,14 @@ class GMap extends React.Component {
 
   startGoogle(){
     console.log('The google', google)
+    InfoBox = infobox(google)
     this.map = this.createMap()
     this.markers = this.props.submissions
                         .filter(submission => submission.submissionType === 'Hazard' && submission.lat && submission.lng)
                         .map(submission => {
                           var marker = this.createMarker(submission.lat, submission.lng)
-                          this.infoWindows.push(this.createInfoWindow(submission, marker))
+                          this.infoBoxes.push(this.createInfoBox(submission, marker))
+                          //this.infoWindows.push(this.createInfoWindow(submission, marker))
                           return marker
                         })
     google.maps.event.addListener(this.map, 'zoom_changed', ()=> this.handleZoomChange())
@@ -90,14 +95,51 @@ class GMap extends React.Component {
     })
 	}
 
-  createInfoWindow(submission, marker) {
-    let contentString = "<div class='InfoWindow'>"+submission.topicTitle+"</div>"
+  createInfoBox(submission, marker) {
+    const {date, location, topicTitle, description} = submission 
+    let boxText = `<div class='InfoBox'>
+                        <span class='infoboxdate'>${moment(date).format()}</span>
+                        Location: ${location}<br/> 
+                       <h3>${topicTitle}</h3>
+                        ${description}
+                    </div>`
+    var box =  new InfoBox({
+      map: this.map,
+      anchor: marker,
+      content: boxText,
+      disableAutoPan: false,
+      maxWidth: 10,
+      pixelOffset: new google.maps.Size(-140, 0),
+      zIndex: null,
+      boxStyle: { 
+        background: "url('tipbox.gif') no-repeat",
+        opacity: 0.75,
+        width: "280px"
+     },
+      closeBoxMargin: "10px 2px 2px 2px",
+      closeBoxURL: "https://www.google.com/intl/en_us/mapfiles/close.gif",
+      infoBoxClearance: new google.maps.Size(1, 1),
+      isHidden: false,
+      pane: "floatPane",
+      enableEventPropagation: false
+    })
+
+      google.maps.event.addListener(marker, 'click', function (e) {
+        box.open(this.map, this);
+      })
+      return box;
+  }
+  
+
+
+  /*createInfoWindow(submission, marker) {
+    let contentString = "<div class='InfoWindow' >"+submission.topicTitle+"</div>"
     return new google.maps.InfoWindow({
       map: this.map,
       anchor: marker,
-      content: contentString
+      content: contentString 
     })
-  }
+  } */
   
   handleZoomChange() {
     this.setState({

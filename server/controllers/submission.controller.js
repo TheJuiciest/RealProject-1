@@ -11,8 +11,6 @@ exports.submission = function (req, res){
 
 	var newSubmission = new Submission();
 
-	newSubmission.username = req.decoded._doc.username;
-
 	console.log(req.decoded)
 	newSubmission.date = req.body.date;
 	newSubmission.location = req.body.location;

@@ -22,8 +22,15 @@
 #location {
 
 }
+.InfoBox {
+    color: hotpink;
+    background: papayawhip;
+    border: solid;
+}
 
-
+.infoboxdate {
+    color: green;
+}
 #topicTitle {
 	
 }

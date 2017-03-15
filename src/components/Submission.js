@@ -115,8 +115,7 @@ class Submission extends Component {
 						onClick={this.uploadFile.bind(this)}>Beam it brah!</button>
 					<form ref="uploadForm" className="uploader" encType="multipart/form-data" >
 		                  <input type='text' onChange={e => this.setState({title: e.target.value})} value={this.state.title} />
-		                   <input ref="file" type="file" name="file" className="upload-file"/>
-		                   <input type="button" ref="button" value="Upload" onClick={this.uploadFile} />
+		                  <input ref="file" type="file" name="file" className="upload-file"/>
 	               </form>          
 				</div>
 			</div>
