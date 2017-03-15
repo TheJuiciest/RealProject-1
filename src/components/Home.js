@@ -3,12 +3,12 @@ import $ from 'jquery';
 import Submission from './Submission';
 import RecentSubmission from './RecentSubmission';
 import GMap from './GMap';
+import { browserHistory } from 'react-router';
 
 
-//import { browserHistory } from 'react-router';
-const initialCenter = { lng: -90.1056957, lat: 29.9717272 }
+const initialCenter = { lng: -113.9966, lat: 46.8787 }
 class Home extends Component {
-	
+
 	constructor(props) {
 		super(props)
 		this.state = {

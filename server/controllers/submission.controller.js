@@ -16,12 +16,12 @@ exports.submission = function (req, res){
 	newSubmission.description = req.body.description;
 
 	
-	newSubmission.find({})
+	/*newSubmission.find({})
 		.populate('userComment')
-		.exec(function (err, newsubmission) {
+		.exec(function (err, data) {
   			if (err) return handleError(err);
-  				console.log(newsubmission);
-		})
+  				console.log(data);
+		}) */
 
 	newSubmission.save(function(err, post){
 		if (err){

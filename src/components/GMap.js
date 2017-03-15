@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 var google = window.google;
 var refreshIntervalId;
-var initialCenter = { lng: 113.9966, lat: 46.8787 };
+
 
 class GMap extends React.Component {
   constructor(props){
@@ -98,7 +98,7 @@ class GMap extends React.Component {
   }
 }
 
-var initialCenter = { lng: 113.9966, lat: 46.8787 }
+var initialCenter = { lng: -113.9966, lat: 46.8787 }
 
 export default GMap
 

@@ -39,10 +39,11 @@ class RecentSubmissionItem extends Component {
     }
 
 	render(){
+		 const style= { left: '600px'}
 		 const { username, date, location, topicTitle, submissionType, description, fd, comments, _id}= this.props.submission;
 		 console.log(comments[0])
-		 return <li key={fd}>{username}   {moment(date).format('MMMM Do YYYY')}   {location}    {topicTitle}    {submissionType}    {description} {this.formatImg(fd)} {comments.map(comment => <Comment comment={comment}/>)} <br/>
-		            		<button className="commentButton" onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>	
+		 return <li key={fd}>{username}   {moment(date).format('MMMM Do YYYY')}   {location}    {topicTitle}    {submissionType}    {description} {this.formatImg(fd)} {comments.map(comment => <Comment comment={comment}/>)}<br/>
+		            		<button className="commentButton" style={style}onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>	
 		            		{ this.state.showCommentBox && <CommentBox submissionId={_id}/> }
 		            	  </li>
 	}
