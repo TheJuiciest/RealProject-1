@@ -19,31 +19,31 @@ var commentSchema = new Schema ({
 var SubmissionSchema = new Schema ({
 	date: {
 		type: Date,
-		required: true
+		//required: true
 	},
 	location: {
 		type: String,
-		required: false
+		//required: false
 	},
 	topicTitle: {
 		type: String,
-		required: true
+		//required: true
 	},
 	submissionType: {
 		type: String,
 		// enum: ['Hazard', 'Lost Dog', 'Found Dog', 'Current Condition', 'Community Event', 'Other'],
-		required: true
+		//required: true
 	},
 	fd: {               
 		type: String,	
-		required: false
+		//required: false
 	},
 	username: {
 		type: String
 	},
 	description: {
 		type: String,
-		required: true
+		//required: true
 	},
 	comments: [{ 
 		type: Schema.Types.ObjectId,

@@ -83,7 +83,7 @@ class GMap extends React.Component {
 	}
 
   createInfoWindow() {
-    let contentString = "<div class='InfoWindow'>I'm a Window that contains Info Yay</div>"
+    let contentString = "<div class='InfoWindow'>This is Missoula aka dog paradise</div>"
     return new google.maps.InfoWindow({
       map: this.map,
       anchor: this.marker,

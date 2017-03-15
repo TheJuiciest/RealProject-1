@@ -92,18 +92,21 @@ var storage = multer.diskStorage({
     cb(null, file.fieldname + Date.now() +'.'+ suffix[file.mimetype] )
   }
 })
-
+var fileFilter = function (req, file, cb) {
+ if (file.path === undefined) {
+  return cb(null, false, new Error('goes wrong on the mimetype'));
+ }
+ cb(null, true);
+}
 var upload = multer({storage: storage}).single("dogPhoto")
 
 
-apiRoutes.post('/submission', upload, requireLogin, subcontroller.submission);
+apiRoutes.post('/submission', upload, fileFilter, requireLogin, subcontroller.submission);
 
 apiRoutes.post('/comment', requireLogin, commentController.comment);
 
 
 apiRoutes.post('/register', controller.register);
-
-/*apiRoutes.post('/comment', requireLogin, subcontroller.comment); */
 
 apiRoutes.get('/submissions', function(req, res) {	//this gets the submission from the user database in mongo and return them as a json object
   Submission.find({})
