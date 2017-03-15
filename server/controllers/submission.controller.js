@@ -1,6 +1,14 @@
 var { Submission } = require('../models/submissionModel')
 
 exports.submission = function (req, res){
+	function reqPath(req, res){
+        if (req.file === undefined){
+        return ''
+        } else{
+            return req.file.path
+        }
+    }
+
 	var newSubmission = new Submission();
 
 	newSubmission.username = req.decoded._doc.username;
@@ -11,9 +19,11 @@ exports.submission = function (req, res){
 	newSubmission.topicTitle = req.body.topicTitle;
 	newSubmission.submissionType = req.body.submissionType;
 	newSubmission.username = req.decoded._doc.username;
-	newSubmission.fd = req.file.path;
-	newSubmission.comment = req.file._id;
+	newSubmission.fd = reqPath(req);
+	newSubmission.comment = req.decoded._doc._id;
 	newSubmission.description = req.body.description;
+	newSubmission.lat = req.body.lat
+	newSubmission.lng = req.body.lng
 
 	
 	/*newSubmission.find({})

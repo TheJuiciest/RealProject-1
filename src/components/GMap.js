@@ -9,6 +9,8 @@ class GMap extends React.Component {
   constructor(props){
     super(props);
     this.state = { zoom: 10, googleLoaded: window.google };
+    this.markers = []
+    this.infoWindows = []
   }
   static propTypes() {
   	initialCenter: React.PropTypes.objectOf(React.PropTypes.number).isRequired
@@ -49,8 +51,13 @@ class GMap extends React.Component {
   startGoogle(){
     console.log('The google', google)
     this.map = this.createMap()
-    this.marker = this.createMarker()
-    this.infoWindow = this.createInfoWindow()
+    this.markers = this.props.submissions
+                        .filter(submission => submission.submissionType === 'Hazard' && submission.lat && submission.lng)
+                        .map(submission => {
+                          var marker = this.createMarker(submission.lat, submission.lng)
+                          this.infoWindows.push(this.createInfoWindow(submission, marker))
+                          return marker
+                        })
     google.maps.event.addListener(this.map, 'zoom_changed', ()=> this.handleZoomChange())
   }
 
@@ -75,18 +82,19 @@ class GMap extends React.Component {
     )
   }
 
-  createMarker() {
+  createMarker(lat,lng) {
+    console.log('Creating marker', lat, lng)
     return new google.maps.Marker({
-      position: this.mapCenter(),
+      position: new google.maps.LatLng(lat, lng),
       map: this.map
     })
 	}
 
-  createInfoWindow() {
-    let contentString = "<div class='InfoWindow'>I'm a Window that contains Info Yay</div>"
+  createInfoWindow(submission, marker) {
+    let contentString = "<div class='InfoWindow'>"+submission.topicTitle+"</div>"
     return new google.maps.InfoWindow({
       map: this.map,
-      anchor: this.marker,
+      anchor: marker,
       content: contentString
     })
   }

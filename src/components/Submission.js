@@ -19,18 +19,20 @@ class Submission extends Component {
 			submissionType: "",
 			description: ""
 		};
-			this.onChange = (location) => this.setState({ location })
+		this.onChange = (location) => {
+			this.setState({ location })
+			geocodeByAddress(location,  (err, { lat, lng }) => {
+  				if (err) { console.log('Oh no!', err) }
+				this.setState({lat, lng})
+			})
+		}
 	}
 
 	locationChanged(event) {
     	this.setState( { location: event.target.value }  )
+    	console.log('geocoding')
 
-    	geocodeByAddress(location,  (err, { lat, lng }) => {
-      		if (err) { console.log('Oh no!', err) }
-
-      		console.log(`Yay! got latitude and longitude for ${location}`, { lat, lng })
-    })
-  }
+  	}
     
 
 	dateChanged(event) {
@@ -57,9 +59,11 @@ class Submission extends Component {
         fd.append('topicTitle', this.state.topicTitle);
         fd.append('date', this.state.date);
         fd.append('location', this.state.location);
-        fd.append('submission', this.state.submission);
+        fd.append('submissionType', this.state.submissionType);
         fd.append('description', this.state.description);
         fd.append('token',document.cookie)
+        fd.append('lat', this.state.lat)
+        fd.append('lng', this.state.lng)
         $.ajax({
             url: config.apiServer +'/api/submission',
             data: fd,
@@ -95,8 +99,7 @@ class Submission extends Component {
 				<div className="submitContainer"> 
 					<h1>Submit a Post</h1>
 				Date:<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
-			Location:<input onSubmit={this.locationChanged} type="hidden" /> 
-					 <PlacesAutocomplete id="location" value={this.state.location} onChange={this.onChange.bind(this)} placeholder="Location of event" /><br/>
+			Location: <PlacesAutocomplete id="location" value={this.state.location} onChange={this.onChange.bind(this)} placeholder="Location of event" /><br/>
 			   Topic:<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
 	 Submission Type:<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
 						<option value="pleaseSelect">Type of Submission Event</option>

@@ -58,7 +58,7 @@ class Home extends Component {
 					<button className="logoutButton" value="logout" href="/">Logout!</button>
 					<div className="recentSubmissionContainer">
 						<Submission reloadSubmissions={this.recentGrabPosts.bind(this)}/>
-						<GMap initialCenter={initialCenter} />
+						<GMap initialCenter={initialCenter} submissions={this.state.submissions} />
 						<h1>Recent Event Submissions</h1>
 						<RecentSubmission submissions={this.state.submissions}/>
 					</div>
