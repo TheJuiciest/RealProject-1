@@ -57,17 +57,10 @@ class Register extends Component {
 	}
 	
 	render() {
-
-		$(".registerButton").on('click', function(event){
-  			event.preventDefault();
-  			window.location.replace("/");
-  		})
-
 		return (
 			
 			<div className="board">
-			<div className="container">
-			<div>
+				<div className="container">
 					<h2>Register Your Life</h2>
 					<input value={this.state.firstname} onChange={this.firstnameChanged.bind(this)} placeholder="First Name" /><br/>
 					<input value={this.state.lastname} onChange={this.lastnameChanged.bind(this)} placeholder="Last Name" /><br/>
@@ -76,8 +69,7 @@ class Register extends Component {
 					<input value={this.state.password} onChange={this.passwordChanged.bind(this)} type="password" placeholder="Enter Password" /><br/>
 					<button className="registerButton" value="Let's Get To It Sparky!"
 						onClick={this.registerEvent.bind(this)}>Register Me On Down!</button>
-			</div>
-			</div>
+				</div>
 			</div>
 			);
 	}

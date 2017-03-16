@@ -15,19 +15,19 @@ class Header extends Component {
 	                  <Link className="homePage" to="/">Home</Link>
 	                </li>
 	                <li className="Nav__item">
-	                  <Link className="registerLogin" to="/login">Register/Login</Link>
+	                  <Link  to="/login">Register/Login</Link>
 	                </li>
 	                <li className="Nav__item">
-	                  <Link className="lostFound" to="/lostandfound">Lost & Found</Link>
+	                  <Link to="/lostandfound">Lost & Found</Link>
 	                </li>
 	                <li className="Nav__item">
-	                  <Link className="myAccount" to="/myaccount">My Account</Link>
+	                  <Link  to="/myaccount">My Account</Link>
 	                </li>
 	                <li className="Nav__item">
-	                  <Link className="archived" to="/archived">Archived</Link>
+	                  <Link to="/archived">Archived</Link>
 	                </li>
 	                <li className="Nav__item">
-	                  <Link className="about" to="/about">About</Link>
+	                  <Link to="/about">About</Link>
 	                </li>
 	              </ul>
 	            </div>

@@ -3,7 +3,6 @@ import $ from 'jquery';
 import Submission from './Submission';
 import RecentSubmission from './RecentSubmission';
 import GMap from './GMap';
-//import { browserHistory } from 'react-router';
 
 const initialCenter = { lng: -113.9966, lat: 46.8787 }
 class Home extends Component {

@@ -80,10 +80,7 @@ input{
 
 }
 
-button{
-    position: absolute; left: 310px;
 
-}
 
 .loginButton:hover {
     background: black;

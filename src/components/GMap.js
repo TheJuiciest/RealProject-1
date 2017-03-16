@@ -1,6 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import ReactDOM from 'react-dom';
 var config = require('../../config');
+=======
+>>>>>>> 7c2b450e9b612cd99827e18b2920df1e100af2d4
 import infobox from '../maps/infobox'
 import moment from 'moment'
 
@@ -14,17 +17,11 @@ class GMap extends React.Component {
     super(props);
     this.state = { zoom: 12, googleLoaded: window.google };
     this.markers = [];
-    //this.infoWindows = []
     this.infoBoxes = []
   }
-  static propTypes() {
-  	initialCenter: React.PropTypes.objectOf(React.PropTypes.number).isRequired
-  }
+
 
 	render() {
-    // if(!this.state.googleLoaded){
-    //   return <div>Loading...</div>
-    // }
     var mapStyle={height: 400}
     return <div className="GMap">
       <div className='UpdatedText'>
@@ -53,7 +50,6 @@ class GMap extends React.Component {
   }
 
   startGoogle(){
-    console.log('The google', google)
     InfoBox = infobox(google)
     this.map = this.createMap()
     this.markers = this.props.submissions
@@ -77,7 +73,6 @@ class GMap extends React.Component {
       zoom: this.state.zoom,
       center: this.mapCenter()
     }
-    console.log(mapOptions)
     return new google.maps.Map(this.refs.mapCanvas, mapOptions)
   }
 
@@ -88,6 +83,7 @@ class GMap extends React.Component {
     )
   }
 
+<<<<<<< HEAD
   createMarker(submissionType, lat,lng) {
     var image = 'http://localhost:3000/videogames.png';
     console.log('Creating marker', lat, lng)
@@ -103,6 +99,13 @@ class GMap extends React.Component {
         map: this.map,
       })
     }
+=======
+  createMarker(lat,lng) {
+    return new google.maps.Marker({
+      position: new google.maps.LatLng(lat, lng),
+      map: this.map
+    })
+>>>>>>> 7c2b450e9b612cd99827e18b2920df1e100af2d4
 	}
 
   createInfoBox(submission, marker) {
@@ -140,17 +143,6 @@ class GMap extends React.Component {
       return box;
   }
   
-
-
-  /*createInfoWindow(submission, marker) {
-    let contentString = "<div class='InfoWindow' >"+submission.topicTitle+"</div>"
-    return new google.maps.InfoWindow({
-      map: this.map,
-      anchor: marker,
-      content: contentString 
-    })
-  } */
-  
   handleZoomChange() {
     this.setState({
       zoom: this.map.getZoom()
@@ -158,7 +150,6 @@ class GMap extends React.Component {
   }
 }
 
-var initialCenter = { lng: -113.9966, lat: 46.8787 }
 
 export default GMap
 
