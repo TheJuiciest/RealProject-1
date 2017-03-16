@@ -17,6 +17,9 @@
    position: relative; left: 290px;
 
 }
+#commentButton{
+  padding: 10px;
+}
 
 
 h2 {
@@ -35,9 +38,10 @@ input{
 
 .logger{  
 
-    margin: 150px 0px 150px 0px; 
+    margin: 400px 0px 150px 650px; 
 
-    position:fixed; bottom:290px; right: 450px;
+    position: static; bottom:290px; 
+    position: static; right: 450px;
     font-size: 30px;
     background-color: #C0C0C0 ;
     padding: 0px 50px 5px 50px; /* 50 was 350 first*/
@@ -47,13 +51,13 @@ input{
 
 
 .reggy{
-    margin: 150px;
-    position:fixed; bottom:290px;
+    margin: 150px 150px 0px 50px;
+    position: static; bottom:290px;
     font-size: 30px;
     background-color: #C0C0C0 ;
     padding: 0px 20px 5px 50px; /* 175 was 5 first*/
     border-radius: 5px;
-    position: absolute; left: 352px;
+    position: static; left: 352px;
 
 
 }

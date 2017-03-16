@@ -10,8 +10,6 @@ exports.submission = function (req, res){
 	}
 	var newSubmission = new Submission();
 
-	newSubmission.username = req.decoded._doc.username;
-	console.log(req.decoded)
 	newSubmission.date = req.body.date;
 	newSubmission.location = req.body.location;
 	newSubmission.topicTitle = req.body.topicTitle;
@@ -20,14 +18,8 @@ exports.submission = function (req, res){
 	newSubmission.fd = reqPath(req);
 	newSubmission.comment = req.decoded._doc._id;
 	newSubmission.description = req.body.description;
-
-	
-	// newSubmission.find({})	
-	// 	.populate('userComment')
-	// 	.exec(function (err, data) {
- //  			if (err) return handleError(err);
- //  				console.log(data);
-	// 	})
+	newSubmission.lat = req.body.lat
+	newSubmission.lng = req.body.lng
 
 	newSubmission.save(function(err, post){
 		if (err){

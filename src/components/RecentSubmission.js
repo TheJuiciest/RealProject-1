@@ -35,20 +35,15 @@ class RecentSubmissionItem extends Component {
 
     formatImg(img){
     	const imgStyle={height: '100px', width: '100px', border: 'none'}
-    	// if(img.split('public')[1] === undefined){
-    	// 	return ''
-    	// } else {
-    	// 	return <img style={imgStyle} src={config.frontEndServer + img.split('public')[1]}/>
-    	// }
-    	return img ? <img style={imgStyle} src={config.frontEndServer + img.split('public')[1]}/> : '' ;
+    	return img ? <img style={imgStyle} role="presentation" src={config.frontEndServer + img.split('public')[1]}/> : '' ;
     }
 
 	render(){
-		 const style= { left: '600px' }
+		 const style= { left: '600px', margin: '10px'}
 		 const { username, date, location, topicTitle, submissionType, description, fd, comments, _id}= this.props.submission;
 		 console.log(comments[0])
-		 return <li key={fd}>{username}   {moment(date).format('MMMM Do YYYY')}   {location}    {topicTitle}    {submissionType}    {description} {this.formatImg(fd)} {comments.map(comment => <Comment comment={comment}/>)} <br/>
-		            		<button style={style} className="commentButton" onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>	
+		 return <li key={fd}>{username}   {moment(date).format('MMMM Do YYYY')}   {location}    {topicTitle}    {submissionType}    {description} {this.formatImg(fd)} {comments.map(comment => <Comment comment={comment}/>)}<br/>
+		            		<button className="commentButton" style={style} onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>	
 		            		{ this.state.showCommentBox && <CommentBox submissionId={_id}/> }
 		            	  </li>
 	}

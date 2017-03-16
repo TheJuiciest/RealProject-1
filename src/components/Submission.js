@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import $ from 'jquery';
-//import PlacesAutocomplete, { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
 
 
@@ -19,26 +19,29 @@ class Submission extends Component {
 			submissionType: "",
 			description: ""
 		};
-		//this.onChange = (location) => this.setState({ location })
+		this.onChange = (location) => {
+			this.setState({ location })
+			geocodeByAddress(location,  (err, { lat, lng }) => {
+  				if (err) { console.log('Oh no!', err) }
+				this.setState({lat, lng})
+			})
+		}
 	}
 
-	/*locationChanged(event) {
-    	this.setState( { location: event.target.value } )
+	locationChanged(event) {
+    	this.setState( { location: event.target.value }  )
+    	console.log('geocoding')
 
-    	geocodeByAddress(location,  (err, { lat, lng }) => {
-      		if (err) { console.log('Oh no!', err) }
-
-      		console.log(`Yay! got latitude and longitude for ${location}`, { lat, lng })
-    })
-  }*/
+  	}
+    
 
 	dateChanged(event) {
 		this.setState( { date: event.target.value} )
 	}
 	
-	locationChanged(event) {
+	/*locationChanged(event) {
 		this.setState( { location: event.target.value})
-	} 
+	} */
 
 	topicTitleChanged(event) {
 		this.setState( { topicTitle: event.target.value} )
@@ -56,9 +59,11 @@ class Submission extends Component {
         fd.append('topicTitle', this.state.topicTitle);
         fd.append('date', this.state.date);
         fd.append('location', this.state.location);
-        fd.append('submission', this.state.submission);
+        fd.append('submissionType', this.state.submissionType);
         fd.append('description', this.state.description);
         fd.append('token',document.cookie)
+        fd.append('lat', this.state.lat)
+        fd.append('lng', this.state.lng)
         $.ajax({
             url: config.apiServer +'/api/submission',
             data: fd,
@@ -94,7 +99,7 @@ class Submission extends Component {
 				<div className="submitContainer"> 
 					<h1>Submit a Post</h1>
 				Date:<input id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" /><br/>
-			Location:<input id="topicTitle" value={this.state.location} onChange={this.locationChanged.bind(this)} placeholder="Location of event" /><br/>
+			Location: <PlacesAutocomplete id="location" value={this.state.location} onChange={this.onChange.bind(this)} placeholder="Location of event" /><br/>
 			   Topic:<input id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" /><br/>
 	 Submission Type:<select id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
 						<option value="pleaseSelect">Type of Submission Event</option>

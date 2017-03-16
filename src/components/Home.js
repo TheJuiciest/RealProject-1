@@ -3,12 +3,11 @@ import $ from 'jquery';
 import Submission from './Submission';
 import RecentSubmission from './RecentSubmission';
 import GMap from './GMap';
-
-
 //import { browserHistory } from 'react-router';
-const initialCenter = { lng: -113.9966, lat: 46.8787  }
+
+const initialCenter = { lng: -113.9966, lat: 46.8787 }
 class Home extends Component {
-	
+
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -58,7 +57,7 @@ class Home extends Component {
 					<button className="logoutButton" value="logout" href="/">Logout!</button>
 					<div className="recentSubmissionContainer">
 						<Submission reloadSubmissions={this.recentGrabPosts.bind(this)}/>
-						<GMap initialCenter={initialCenter} />
+						<GMap initialCenter={initialCenter} submissions={this.state.submissions} />
 						<h1>Recent Event Submissions</h1>
 						<RecentSubmission submissions={this.state.submissions}/>
 					</div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Submission from './Submission';
+//import Submission from './Submission';
 import $ from 'jquery';     
 
 

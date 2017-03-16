@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+var config = require('../../config');
 
 var google = window.google;
 var refreshIntervalId;
-var initialCenter = { lng: 113.9966, lat: 46.8787 };
+
 
 class GMap extends React.Component {
   constructor(props){
     super(props);
     this.state = { zoom: 10, googleLoaded: window.google };
+    this.markers = []
+    this.infoWindows = []
   }
   static propTypes() {
   	initialCenter: React.PropTypes.objectOf(React.PropTypes.number).isRequired
@@ -49,8 +52,13 @@ class GMap extends React.Component {
   startGoogle(){
     console.log('The google', google)
     this.map = this.createMap()
-    this.marker = this.createMarker()
-    this.infoWindow = this.createInfoWindow()
+    this.markers = this.props.submissions
+                        .filter(submission => submission.submissionType === 'Hazard', 'Lost' && submission.lat && submission.lng)
+                        .map(submission => {
+                          var marker = this.createMarker(submission.lat, submission.lng)
+                          this.infoWindows.push(this.createInfoWindow(submission, marker))
+                          return marker
+                        })
     google.maps.event.addListener(this.map, 'zoom_changed', ()=> this.handleZoomChange())
   }
 
@@ -75,18 +83,27 @@ class GMap extends React.Component {
     )
   }
 
-  createMarker() {
-    return new google.maps.Marker({
-      position: this.mapCenter(),
-      map: this.map
-    })
+  createMarker(lat,lng) {
+    var image = 'http://localhost:3000/videogames.png';
+    console.log('Creating marker', lat, lng)
+    if(submission => submission.submissionType === 'Hazard'){
+      return new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        map: this.map,
+        icon: image
+      })
+    } else if(submission => submission.submissionType === 'Lost'){
+      return new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        map: this.map,
+      })
+    }
 	}
-
-  createInfoWindow() {
-    let contentString = "<div class='InfoWindow'>This is Missoula aka dog paradise</div>"
+  createInfoWindow(submission, marker) {
+    let contentString = "<div class='InfoWindow'>"+submission.topicTitle+"</div>"
     return new google.maps.InfoWindow({
       map: this.map,
-      anchor: this.marker,
+      anchor: marker,
       content: contentString
     })
   }
@@ -98,7 +115,7 @@ class GMap extends React.Component {
   }
 }
 
-var initialCenter = { lng: 113.9966, lat: 46.8787 }
+var initialCenter = { lng: -113.9966, lat: 46.8787 }
 
 export default GMap
 

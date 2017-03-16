@@ -1,7 +1,7 @@
 .submitContainer {
 	position: absolute;
 	right: 200px;
-	top: 500px;
+	top: 200px;
 }
 .imgSubmissionContainer{
 	position: absolute;
@@ -26,6 +26,9 @@
 
 #topicTitle {
 	
+}
+#commentButton{
+    padding: 10px;
 }
 
 
