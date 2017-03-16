@@ -33,13 +33,11 @@ html, body {
 .title {
   font-weight: bold;
 }
-#infowindow {
-  height: 50px;
-  width: 50px;
-}
 #infowindow-content {
+  display: none;
 }
 #map #infowindow-content {
+  display: inline;
   height: 50px;
   width: 50px;
 }

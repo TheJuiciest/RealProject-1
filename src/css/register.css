@@ -1,5 +1,7 @@
 .board{
     padding: 75px;
+    margin: 0px 0px 0px 0px;
+    position: static; left: 500px;
 }
 
 .board .container {
@@ -12,9 +14,9 @@
    border-color:#d2d2d2 ;
    border-width: 5px;
    box-shadow:0 1px 0 #cfcfcf ;
-   margin: 0px 575px 0px 0px;
+   margin: 0px 560px 0px 0px;
    box-shadow:0 5px 0 #cfcfcf;
-   position: relative; left: 290px;
+   position: static; left: 290px;
 
 }
 #commentButton{
@@ -38,10 +40,9 @@ input{
 
 .logger{  
 
-    margin: 400px 0px 150px 650px; 
+    margin: 150px 200px 0px 200px; 
 
-    position: static; bottom:290px; 
-    position: static; right: 450px;
+    position:static; bottom:290px; right: 450px;
     font-size: 30px;
     background-color: #C0C0C0 ;
     padding: 0px 50px 5px 50px; /* 50 was 350 first*/
@@ -51,8 +52,8 @@ input{
 
 
 .reggy{
-    margin: 150px 150px 0px 50px;
-    position: static; bottom:290px;
+    margin: 150px 600px 0px 450px;
+    position:static; bottom:290px;
     font-size: 30px;
     background-color: #C0C0C0 ;
     padding: 0px 20px 5px 50px; /* 175 was 5 first*/
@@ -80,7 +81,7 @@ input{
 }
 
 button{
-    position: absolute; left: 220px;
+    position: absolute; left: 310px;
 
 }
 
@@ -94,6 +95,7 @@ button{
     color: white;
     background-color: #561111 ;
     border-radius: 5px;
+    position: absolute; left: 290px;
 }
 
 .registerButton:hover {

@@ -117,7 +117,6 @@ class Submission extends Component {
 	               </form>        
 					<button className="submissionButton" value="Beam it brah"
 						onClick={this.uploadFile.bind(this)}>Beam it brah!</button>
-         
 				</div>
 			</div>
 			);

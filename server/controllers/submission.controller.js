@@ -9,7 +9,7 @@ exports.submission = function (req, res){
 		}
 	}
 	var newSubmission = new Submission();
-
+	
 	newSubmission.date = req.body.date;
 	newSubmission.location = req.body.location;
 	newSubmission.topicTitle = req.body.topicTitle;
