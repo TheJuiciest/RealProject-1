@@ -4,7 +4,6 @@ import Submission from './Submission';
 import RecentSubmission from './RecentSubmission';
 import GMap from './GMap';
 
-
 const initialCenter = { lng: -113.9966, lat: 46.8787 }
 class Home extends Component {
 

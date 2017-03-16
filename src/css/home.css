@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 
+=======
+.submitContainer {
+	position: absolute;
+	right: 200px;
+	top: 200px;
+}
+>>>>>>> 4f67b693c48541c96f122c2bb195e7e81ac74bf9
 .imgSubmissionContainer{
 	position: absolute;
 	right: 200px;
@@ -31,6 +39,16 @@
 .infoboxdate {
     color: green;
 }
+<<<<<<< HEAD
+=======
+#topicTitle {
+	
+}
+#commentButton{
+    padding: 10px;
+}
+
+>>>>>>> 4f67b693c48541c96f122c2bb195e7e81ac74bf9
 
 .submissionButton {
     background-color: #808080;

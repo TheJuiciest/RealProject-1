@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-//import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import '../css/register.css';
 var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
