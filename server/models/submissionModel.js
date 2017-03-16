@@ -39,7 +39,7 @@ var SubmissionSchema = new Schema ({
 		//required: false
 	},
 	username: {
-		//type: String
+		type: String
 	},
 	description: {
 		type: String,

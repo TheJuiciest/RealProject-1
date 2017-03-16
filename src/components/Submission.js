@@ -31,8 +31,6 @@ class Submission extends Component {
 
 	locationChanged(event) {
     	this.setState( { location: event.target.value }  )
-    	console.log('geocoding')
-
   	}
     
 
@@ -103,7 +101,7 @@ class Submission extends Component {
 				    	<label htmlFor="topic">Topic:</label><input name='topic' id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" />
 				    </div>
 			 	     <div>
-			 			<label htmlFor='type'>Submission Type:  </label>
+			 			<label htmlFor='type' id='subtype'>Submission Type:</label>
 		 			    <select name='type' id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
 							<option value="pleaseSelect">Type of Submission Event</option>
 							<option value="Hazard">Hazard</option>
@@ -115,7 +113,7 @@ class Submission extends Component {
 						</select> 
 					</div>
 					<div>                 
-						<label htmlFor='description'>Description</label><textarea name='description' className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
+						<label htmlFor='description'>Description:</label><textarea name='description' className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
 					</div>
 					<div>
 						<input type='text' onChange={e => this.setState({title: e.target.value})} value={this.state.title} />

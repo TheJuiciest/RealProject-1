@@ -84,6 +84,7 @@ class CommentBox extends Component {
 		.done(function(result){
 			console.log(result)
 		})
+
 	}
 
     render() {

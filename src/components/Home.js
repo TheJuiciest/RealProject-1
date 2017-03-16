@@ -56,19 +56,19 @@ class Home extends Component {
 			<div>				
 					<button className="logoutButton" value="logout" href="/">Logout!</button>
 					<div className="container">
-						<div className="row">
-							<div className="col-md-6">
+							<div className="col-md-12">
 								<GMap initialCenter={initialCenter} submissions={this.state.submissions} />
 							</div>
-							<div className="col-md-6">
-								<Submission reloadSubmissions={this.recentGrabPosts.bind(this)}/>
-							</div>
-						</div>
-						<div>
-							<h1>Recent Event Submissions</h1>
-							<RecentSubmission submissions={this.state.submissions} />
-						</div>
-						</div>
+							<div className="row">
+								<div className="col-md-6">
+									<h1>Recent Event Submissions</h1>
+									<RecentSubmission submissions={this.state.submissions} />
+								</div>
+								<div className="col-md-6">
+									<Submission reloadSubmissions={this.recentGrabPosts.bind(this)}/>
+								</div>
+							</div>	
+					</div>
 			</div>
 	
 		)
