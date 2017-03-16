@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Submission from './Submission';
 import $ from 'jquery';     
 
 
@@ -22,8 +21,7 @@ class Archived extends Component {
 			me.setState({ submissions: submissions })
 		})
 	}
-				//submissions.sort(function(a, b){
-				//return b.Date-a.Date;
+
    componentWillMount() {
    	this.archivedGrab()
    }
