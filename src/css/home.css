@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 
-=======
-.submitContainer {
-	position: absolute;
-	right: 200px;
-	top: 200px;
-}
->>>>>>> 4f67b693c48541c96f122c2bb195e7e81ac74bf9
 .imgSubmissionContainer{
 	position: absolute;
 	right: 200px;
@@ -31,24 +23,44 @@
 // }
 
 .InfoBox {
-    color: hotpink;
-    background: papayawhip;
-    border: solid;
+    color: black;
+    background: white;
+    border: solid 2px #CCCCCC;
 }
 
 .infoboxdate {
     color: green;
+    border: solid 1px #CCCCCC;
+    display: table;
+    padding: 4px;
+    margin: 4px 4px 0px 4px;
 }
-<<<<<<< HEAD
-=======
-#topicTitle {
-	
+
+
+.infoboxlocation {
+    color: black;
+    border: solid 2px #CCCCCC;
+    display: table;
+    padding: 4px;
+    margin: 4px 4px 0px 4px;
 }
+
+
+.infobox-topdesc {
+    text-align: center;
+}
+
+.infoboxtopic {
+    color: black;
+}
+
+.infoboxuser {
+    color: green;
+}
+
 #commentButton{
     padding: 10px;
 }
-
->>>>>>> 4f67b693c48541c96f122c2bb195e7e81ac74bf9
 
 .submissionButton {
     background-color: #808080;
@@ -84,7 +96,7 @@
 }
 
 .initLoginButton{
-	  background-color: #808080;;
+	background-color: #808080;;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -93,7 +105,7 @@
     display: inline-block;
     font-size: 16px;
     position: absolute;
-    right: 100px;
+    left: 100px;
 }
 
 h1 {

@@ -10,7 +10,7 @@ var InfoBox
 class GMap extends React.Component {
   constructor(props){
     super(props);
-    this.state = { zoom: 12, googleLoaded: window.google };
+    this.state = { zoom: 13, googleLoaded: window.google };
     this.markers = [];
     this.infoBoxes = []
   }
@@ -76,6 +76,7 @@ class GMap extends React.Component {
       this.props.initialCenter.lng
     )
   }
+
   createMarker(submissionType, lat,lng) {
     console.log(submissionType)
     var imgCaution = 'http://localhost:3000/caution.png';
@@ -102,15 +103,17 @@ class GMap extends React.Component {
         icon: imgFound
       })
     }
-	}
 
   createInfoBox(submission, marker) {
-    const {date, location, topicTitle, description} = submission 
+    const {date, username, location, topicTitle, description} = submission 
     let boxText = `<div class='InfoBox'>
-                        <span class='infoboxdate'>${moment(date).format()}</span>
-                        Location: ${location}<br/> 
-                       <h3>${topicTitle}</h3>
-                        ${description}
+                        <span class='infoboxdate'>${moment(date).format('MMMM Do YYYY')}</span>
+                        <div class='infobox-topdesc'>
+                          <span class='infoboxtitle' ><h3>${topicTitle}</h3>
+                          ${description}<br/>
+                        </div>
+                        <span class='infoboxlocation'>Location: ${location}</span><br/> 
+                        <span class='infoboxuser'>Posted By: ${username}</span>
                     </div>`
     var box =  new InfoBox({
       map: this.map,
@@ -121,8 +124,8 @@ class GMap extends React.Component {
       pixelOffset: new google.maps.Size(-140, 0),
       zIndex: null,
       boxStyle: { 
-        background: "url('tipbox.gif') no-repeat",
-        opacity: 0.75,
+        background: "",
+        opacity: 2,
         width: "280px"
      },
       closeBoxMargin: "10px 2px 2px 2px",
