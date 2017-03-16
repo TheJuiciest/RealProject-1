@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import $ from 'jquery';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import { Link } from 'react-router';
-var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
+var config = require('../../config'); 
 import moment from 'moment'
 
 

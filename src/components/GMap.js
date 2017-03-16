@@ -1,9 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import ReactDOM from 'react-dom';
-var config = require('../../config');
-=======
->>>>>>> 7c2b450e9b612cd99827e18b2920df1e100af2d4
 import infobox from '../maps/infobox'
 import moment from 'moment'
 
@@ -53,11 +48,10 @@ class GMap extends React.Component {
     InfoBox = infobox(google)
     this.map = this.createMap()
     this.markers = this.props.submissions
-                        .filter(submission => submission.submissionType === 'Hazard' || 'Lost' && submission.lat && submission.lng)
+                        .filter(submission => submission.submissionType === 'Hazard' || 'Lost Dog' || 'Found Dog' && submission.lat && submission.lng)
                         .map(submission => {
                           var marker = this.createMarker(submission.submissionType, submission.lat, submission.lng)
                           this.infoBoxes.push(this.createInfoBox(submission, marker))
-                          //this.infoWindows.push(this.createInfoWindow(submission, marker))
                           return marker
                         })
     google.maps.event.addListener(this.map, 'zoom_changed', ()=> this.handleZoomChange())
@@ -82,30 +76,32 @@ class GMap extends React.Component {
       this.props.initialCenter.lng
     )
   }
-
-<<<<<<< HEAD
   createMarker(submissionType, lat,lng) {
-    var image = 'http://localhost:3000/videogames.png';
+    console.log(submissionType)
+    var imgCaution = 'http://localhost:3000/caution.png';
+    var imgLost = 'http://localhost:3000/lostDog.png';
+    var imgFound = 'http://localhost:3000/foundDog.png';
     console.log('Creating marker', lat, lng)
-    if(submission => submission.submissionType === 'Hazard'){
+    if(submissionType === 'Hazard'){
+      console.log(submissionType)
       return new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
         map: this.map,
-        icon: image
+        icon: imgCaution
       })
-    } else if(submission => submission.submissionType === 'Lost'){
+    } else if(submissionType === 'Lost Dog'){
       return new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
         map: this.map,
+        icon: imgLost
+      })
+    } else if(submissionType === 'Found Dog'){
+      return new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        map: this.map,
+        icon: imgFound
       })
     }
-=======
-  createMarker(lat,lng) {
-    return new google.maps.Marker({
-      position: new google.maps.LatLng(lat, lng),
-      map: this.map
-    })
->>>>>>> 7c2b450e9b612cd99827e18b2920df1e100af2d4
 	}
 
   createInfoBox(submission, marker) {
