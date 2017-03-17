@@ -1,3 +1,9 @@
+.recentSubContainer {
+    color: black;
+    background: white;
+    border: solid 2px #CCCCCC;
+}
+
 
 .imgSubmissionContainer{
 	position: absolute;
@@ -10,11 +16,16 @@
 }
 
 
+.submitContainer {
+    color: black;
+    background: white;
+    border: solid 2px #CCCCCC;
+}
+
 .submitContainer label {
-    width:180px;
+    width:100px;
     clear:left;
     text-align:right;
-    padding-right:10px;
 }
 
 // #subtype {
@@ -71,14 +82,39 @@
     text-decoration: none;
     display: block;
     font-size: 16px;
+    position: relative;
+    left: 200px;
+    bottom: 25px;
+}
+
+#selectValue {
+    position: relative;
+    left: 165px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
 }
 
 .form-control{
-	display: block;
+	position: relative;
+    left: 110px;
+    bottom: 10px;
+    display:block;
 	overflow: scroll;
-	height: 150px;
-	width: 250px;
-	font-size: 16px;
+	height: 200px;
+	width: 350px;
+	font-size: 14px;
+}
+
+.picUpload{
+    position: relative;
+    bottom: 30px;
+}
+
+.upload-file {
+    position: relative;
+    left: 75px;
 }
 
 .logoutButton{
@@ -110,7 +146,7 @@
 
 h1 {
     color: maroon;
-    margin-left: 40px;
+    margin-left: 175px;
 } 
 
 br {

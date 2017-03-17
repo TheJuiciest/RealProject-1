@@ -48,8 +48,8 @@ class GMap extends React.Component {
     InfoBox = infobox(google)
     this.map = this.createMap()
     this.markers = this.props.submissions
-                        .filter(submission => submission.submissionType === 'Hazard' || 'Lost Dog' || 'Found Dog' && submission.lat && submission.lng)
-                        .map(submission => {
+                       .filter(submission => (  ['Hazard', 'Lost Dog', 'Found Dog'].indexOf(submission.submissionType) !==  -1 )&& submission.lat && submission.lng)
+                       .map(submission => {
                           var marker = this.createMarker(submission.submissionType, submission.lat, submission.lng)
                           this.infoBoxes.push(this.createInfoBox(submission, marker))
                           return marker
@@ -78,11 +78,31 @@ class GMap extends React.Component {
   }
 
   createMarker(submissionType, lat,lng) {
+
     console.log(submissionType)
     var imgCaution = 'http://localhost:3000/caution.png';
     var imgLost = 'http://localhost:3000/lostDog.png';
     var imgFound = 'http://localhost:3000/foundDog.png';
     console.log('Creating marker', lat, lng)
+
+    /*var oms = new OverlappingMarkerSpiderfier(this.map,
+        {markersWontMove: true, markersWontHide: true});
+
+    var usualColor = 'eebb22';
+    var spiderfiedColor = 'ffee22';
+    var iconWithColor = function(color) {
+        return 'https://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin|+|' +
+          color + '|000000|ffff00';
+    }
+    
+
+    var bounds = new gm.LatLngBounds();
+    for (var i = 0; i < window.mapData.length; i ++) {
+      var datum = window.mapData[i];
+      var loc = new google.maps.LatLng(lat, lng);
+      bounds.extend(loc);
+    } */
+
     if(submissionType === 'Hazard'){
       console.log(submissionType)
       return new google.maps.Marker({
@@ -104,13 +124,24 @@ class GMap extends React.Component {
       })
     }
 
+    /*marker.desc = datum.d;
+      oms.addMarker(marker);
+
+    map.fitBounds(bounds);
+
+      oms.addListener('click', function(marker) {
+        box.setContent(marker.desc);
+        box.open(this.map, this.marker);
+      });*/
+  }
+
   createInfoBox(submission, marker) {
     const {date, username, location, topicTitle, description} = submission 
     let boxText = `<div class='InfoBox'>
                         <span class='infoboxdate'>${moment(date).format('MMMM Do YYYY')}</span>
                         <div class='infobox-topdesc'>
                           <span class='infoboxtitle' ><h3>${topicTitle}</h3>
-                          ${description}<br/>
+                          ${description}
                         </div>
                         <span class='infoboxlocation'>Location: ${location}</span><br/> 
                         <span class='infoboxuser'>Posted By: ${username}</span>
@@ -136,9 +167,29 @@ class GMap extends React.Component {
       enableEventPropagation: false
     })
 
+      /*oms.addListener('click', function(marker) {
+        box.setContent(marker.desc);
+        box.open(this.map, this.marker);
+      });
+
+      oms.addListener('spiderfy', function(markers) {
+        for(var i = 0; i < markers.length; i ++) {
+          markers[i].setIcon(iconWithColor(spiderfiedColor));
+          markers[i].setShadow(null);
+        } 
+        box.close();
+      });
+      oms.addListener('unspiderfy', function(markers) {
+        for(var i = 0; i < markers.length; i ++) {
+          markers[i].setIcon(iconWithColor(usualColor));
+          markers[i].setShadow(shadow);
+        }
+      }); */
+
       google.maps.event.addListener(marker, 'click', function (e) {
         box.open(this.map, this);
       })
+
       return box;
   }
   

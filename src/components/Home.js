@@ -51,6 +51,7 @@ class Home extends Component {
   			window.location.replace("/");
   		})
 
+
 		return (
 			<div>				
 					<button className="logoutButton" value="logout" href="/">Logout!</button>

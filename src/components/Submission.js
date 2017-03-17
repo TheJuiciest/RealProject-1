@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import $ from 'jquery';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import { Link } from 'react-router';
-var config = require('../../config'); 
+var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
 import moment from 'moment'
 
 
@@ -87,45 +87,47 @@ class Submission extends Component {
 				<p1>If you'd like to submit a post, please login!</p1><br/>
 				<Link to='/login'><button className="initLoginButton">Login!</button></Link>
 			</div>
-			<div className="submitContainer"> 
 				<h1>Submit a Post</h1>
-				
-			    <form ref="uploadForm" className="uploader" encType="multipart/form-data" >
-					<div>
-						<label htmlFor='date'>Date:</label><input name='date' id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" />
-					</div>
-					<div>
-						<label htmlFor='location'>Location: </label><PlacesAutocomplete id="location" name='location' value={this.state.location} onChange={this.onChange.bind(this)} placeholder="Location of event" />
-				    </div>
-				    <div>
-				    	<label htmlFor="topic">Topic:</label><input name='topic' id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" />
-				    </div>
-			 	     <div>
-			 			<label htmlFor='type' id='subtype'>Submission Type:</label>
-		 			    <select name='type' id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
-							<option value="pleaseSelect">Type of Submission Event</option>
-							<option value="Hazard">Hazard</option>
-							<option value="Lost Dog">Lost Dog</option>
-							<option value="Found Dog">Found Dog</option>
-							<option value="Current Condition">Current Condition</option>
-							<option value="Community Event">Community Event</option>
-							<option value="Other">Other</option>
-						</select> 
-					</div>
-					<div>                 
-						<label htmlFor='description'>Description:</label><textarea name='description' className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" /><br/>
-					</div>
-					<div>
-						<input type='text' onChange={e => this.setState({title: e.target.value})} value={this.state.title} />
-		            </div>
-		            <div>
-		            	<input ref="file" type="file" name="file" className="upload-file"/>
-					</div>
-					<div>
-						<button className="submissionButton" value="Beam it brah"
-						onClick={this.uploadFile.bind(this)}>Beam it brah!</button>
-		             </div>    
-	               </form>          
+				<div className="submitContainer"> 
+				    <form ref="uploadForm" className="uploader" encType="multipart/form-data" >
+						<div>
+							<label htmlFor='date'>Date:</label><input name='date' id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" />
+						</div>
+						<div>
+							<label htmlFor='location'>Location: </label><PlacesAutocomplete id="location" name='location' value={this.state.location} onChange={this.onChange.bind(this)} placeholder="Location of event" />
+					    </div>
+					    <div>
+					    	<label htmlFor="topic">Topic:</label><input name='topic' id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" />
+					    </div>
+				 	     <div>
+				 			<label htmlFor='type' id='subtype'>Submission:</label>
+			 			    <select name='type' id="selectValue" onChange={(e)=>this.setState({'submissionType': e.target.value })}>
+								<option value="pleaseSelect">Type of Submission Event</option>
+								<option value="Hazard">Hazard</option>
+								<option value="Lost Dog">Lost Dog</option>
+								<option value="Found Dog">Found Dog</option>
+								<option value="Current Condition">Current Condition</option>
+								<option value="Community Event">Community Event</option>
+								<option value="Other">Other</option>
+							</select> 
+						</div>
+						<div>                 
+							<label htmlFor='description'>Description:</label><textarea name='description' className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" />
+						</div>
+						
+			            <div>
+			            	<div className="upload-file">
+			            		<input ref="file" type="file" name="file"/>
+			            	</div>
+			            	<div className="picUpload">
+			            		<label htmlFor='picture'>Pic Upload:</label>
+			            	</div>
+						</div><br/>
+						<div>
+							<button className="submissionButton" value="Beam it brah"
+							onClick={this.uploadFile.bind(this)}>Beam it brah!</button>
+			             </div>    
+		               </form>          
 				</div>
 			</div>
 			);

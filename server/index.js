@@ -1,13 +1,13 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var jwt    = require('jsonwebtoken');   
-var config = require('../config');      
+var jwt    = require('jsonwebtoken');     //let's us use webtokens 
+var config = require('../config');       //let's us use our config file, which connects us to mongo user database
 var path = require('path');
 var User = require('./models/user.model');
 var { Submission, Comment }= require('./models/submissionModel');
 var subcontroller = require('./controllers/submission.controller');
-var controller = require('./controllers/user.controller');
+var controller = require('./controllers/user.controller'); //need to add this we're using the method deinfed in user.controller that is being posted to the db from app.js 
 var commentController = require('./controllers/comment.controller');
 var morgan = require('morgan');
 var multer = require('multer');
@@ -92,6 +92,7 @@ var storage = multer.diskStorage({
     cb(null, file.fieldname + Date.now() +'.'+ suffix[file.mimetype] )
   }
 })
+
 var upload = multer({storage: storage}).single("dogPhoto")
 
 
@@ -99,8 +100,9 @@ apiRoutes.post('/submission', upload, requireLogin, subcontroller.submission);
 
 apiRoutes.post('/comment', requireLogin, commentController.comment);
 
-
 apiRoutes.post('/register', controller.register);
+
+/*apiRoutes.post('/comment', requireLogin, subcontroller.comment); */
 
 apiRoutes.get('/submissions', function(req, res) {	//this gets the submission from the user database in mongo and return them as a json object
   Submission.find({})
