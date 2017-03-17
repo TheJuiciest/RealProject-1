@@ -79,7 +79,6 @@ class GMap extends React.Component {
 
   createMarker(submissionType, lat,lng) {
 
-    console.log(submissionType)
     var imgCaution = 'http://localhost:3000/caution.png';
     var imgLost = 'http://localhost:3000/lostDog.png';
     var imgFound = 'http://localhost:3000/foundDog.png';
@@ -123,6 +122,7 @@ class GMap extends React.Component {
         icon: imgFound
       })
     }
+  }
 
     /*marker.desc = datum.d;
       oms.addMarker(marker);
@@ -133,7 +133,6 @@ class GMap extends React.Component {
         box.setContent(marker.desc);
         box.open(this.map, this.marker);
       });*/
-  }
 
   createInfoBox(submission, marker) {
     const {date, username, location, topicTitle, description} = submission 
@@ -146,6 +145,7 @@ class GMap extends React.Component {
                         <span class='infoboxlocation'>Location: ${location}</span><br/> 
                         <span class='infoboxuser'>Posted By: ${username}</span>
                     </div>`
+                
     var box =  new InfoBox({
       map: this.map,
       anchor: marker,

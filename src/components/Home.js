@@ -62,7 +62,9 @@ class Home extends Component {
 							<div className="row">
 								<div className="col-md-6">
 									<h1>Recent Event Submissions</h1>
-									<RecentSubmission submissions={this.state.submissions} />
+									<div id="rsContainer">
+										<RecentSubmission submissions={this.state.submissions} />
+									</div>
 								</div>
 								<div className="col-md-6">
 									<Submission reloadSubmissions={this.recentGrabPosts.bind(this)}/>
