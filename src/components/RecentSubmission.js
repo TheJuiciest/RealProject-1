@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import moment from 'moment'
+import {FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 
 var config = require('../../config');       
 
@@ -12,9 +13,11 @@ class RecentSubmission extends Component {
 
 		return (
 	    	<div>
-				<ul>
+	    		<div>
+				<ul id="recentSubUl">
 		        {this.props.submissions.map((submission) => <RecentSubmissionItem  key={submission._id} submission={submission}/>)}
 		        </ul>
+		        </div>
 	    	</div>
 		)
 	}
@@ -35,16 +38,50 @@ class RecentSubmissionItem extends Component {
 
     formatImg(img){
     	const imgStyle={height: '100px', width: '100px'}
-    	return img ? <img style={imgStyle} role='presentation' src={config.frontEndServer + img.split('public')[1]}/> : '';
+    	return img ? <img className="img-circle" style={imgStyle} role='presentation' src={config.frontEndServer + img.split('public')[1]}/> : '';
     }
 
 	render(){
 		 const style= { left: '600px', margin: '10px'}
 		 const { username, date, location, topicTitle, submissionType, description, fd, comments, _id}= this.props.submission;
-		 return <li key={fd}>{username}   {moment(date).format('MMMM Do YYYY')}   {location}    {topicTitle}    {submissionType}    {description} {this.formatImg(fd)} {comments.map(comment => <Comment key={comment._id} comment={comment}/>)}<br/>
-		            		<button className="commentButton" style={style} onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>	
+		 return (
+		 <div className="mainContainer">
+		 	<div className="recentSubContainer">
+		 		<div className="dateSub">
+		 		 	<span>{moment(date).format('MMMM Do YYYY')}</span>
+		 	 	</div>
+		 	 	 <div className="submissionSub"> 
+		 		     <span>{submissionType}</span>
+		 		 </div>   
+		 		  <div className="topicSub">
+		 		     <span>{topicTitle}</span>
+		 		 </div>  
+		 		 <div className="locationSub">
+		 		   <span>{location}</span>
+		 		 </div>
+		 		 <div className="descriptionSub">
+		 		     <span>{description}</span>
+		 		 </div>
+		 		 <div className="fdSub">
+		 		 	 <span>{this.formatImg(fd)}</span>
+		 		 </div>
+		 		 <div className="userSub">
+		 			<span>{username}</span>
+		 		</div>
+		 	</div>
+		 	<div className="recentComContainer">
+		 		 <div className="commSub">
+		 		      {comments.map(comment => <Comment key={comment._id} comment={comment}/>)}<br/>
+		 	     </div>
+		    </div>
+		    <div className="buttonSub">
+		        	<button bsStyle="warning" className="commentButton" style={style} onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>	
 		            		{ this.state.showCommentBox && <CommentBox submissionId={_id}/> }
-		            	  </li>
+		    </div>
+		 </div>
+		 )
+		  
+		            	  
 	}
 }
 

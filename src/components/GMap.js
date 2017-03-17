@@ -48,8 +48,9 @@ class GMap extends React.Component {
     InfoBox = infobox(google)
     this.map = this.createMap()
     this.markers = this.props.submissions
-                        .filter(submission => submission.submissionType === 'Hazard' || 'Lost Dog' || 'Found Dog' && submission.lat && submission.lng)
+                        .filter(submission => (  ['Hazard', 'Lost Dog', 'Found Dog'].indexOf(submission.submissionType) !==  -1 )&& submission.lat && submission.lng)
                         .map(submission => {
+                          console.log(submission)
                           var marker = this.createMarker(submission.submissionType, submission.lat, submission.lng)
                           this.infoBoxes.push(this.createInfoBox(submission, marker))
                           return marker
@@ -78,7 +79,7 @@ class GMap extends React.Component {
   }
 
   createMarker(submissionType, lat,lng) {
-    console.log(submissionType)
+    console.log(lat, lng)
     var imgCaution = 'http://localhost:3000/caution.png';
     var imgLost = 'http://localhost:3000/lostDog.png';
     var imgFound = 'http://localhost:3000/foundDog.png';
@@ -103,6 +104,7 @@ class GMap extends React.Component {
         icon: imgFound
       })
     }
+  }
 
   createInfoBox(submission, marker) {
     const {date, username, location, topicTitle, description} = submission 
@@ -115,6 +117,7 @@ class GMap extends React.Component {
                         <span class='infoboxlocation'>Location: ${location}</span><br/> 
                         <span class='infoboxuser'>Posted By: ${username}</span>
                     </div>`
+                
     var box =  new InfoBox({
       map: this.map,
       anchor: marker,

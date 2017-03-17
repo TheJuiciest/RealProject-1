@@ -1,3 +1,6 @@
+.img-circle{
+border-radius: 50%
+}
 
 .imgSubmissionContainer{
 	position: absolute;
@@ -116,3 +119,22 @@ h1 {
 br {
     line-height: 200%;
     }
+
+
+.mainContainer {
+    border-bottom: solid 1px;
+    border:solid 1px;
+} 
+
+#recentSubUl {
+    padding-left: 0px;
+
+}
+.recentSubContainer {
+    padding-left: 5px;
+}
+
+.recentComContainer {
+
+    padding-left: 5px;
+}
