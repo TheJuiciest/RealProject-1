@@ -139,6 +139,87 @@ border-radius: 50%
     right: 50px;
     top: 102px
 } 
+<<<<<<< HEAD
+=======
+
+/*.logoutButton {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: relative;
+  cursor: pointer;
+  padding: 0 20px 0 73px;
+  border: none;
+  font: normal 20px/2.4 "Open Sans", Helvetica, sans-serif;
+  color: rgba(255,255,255,0.9);
+  text-transform: capitalize;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: rgba(183,183,183,1);
+  -webkit-box-shadow: 0 5px 0 0 rgba(182,186,193,1) ;
+  box-shadow: 0 5px 0 0 rgba(182,186,193,1) ;
+  text-shadow: 0 1px 1px rgba(87,151,180,0.36) ;
+  -webkit-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: top 50ms cubic-bezier(0.42, 0, 0.58, 1);
+  top: -103px;
+  right: -1070px;
+}
+
+.logoutButton:hover {
+  background: rgba(86,9,9,1);
+  -webkit-box-shadow: 0 5px 0 0 rgba(99,25,25,1) ;
+  box-shadow: 0 5px 0 0 rgba(99,25,25,1) ;
+  text-shadow: 0 1px 1px rgba(81,127,147,0.36) ;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+.logoutButton:active {
+  top: 2px;
+  background: rgba(91,125,193,1);
+  -webkit-box-shadow: 0 3px 0 0 rgba(107,0,0,1) ;
+  box-shadow: 0 3px 0 0 rgba(107,0,0,1) ;
+  text-shadow: 0 1px 1px rgba(87,151,180,0.36) ;
+}
+
+.logoutButton::before {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  content: "";
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  border: 0 solid #018dc4;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  font: normal medium/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,0.9);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: url("http://enjoycss.com/bg-img/custom/14465-i6n10r.png"), rgba(180,180,180,1);
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
+  -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+} */
+>>>>>>> 457798a... formatting, lf and archive and almost delete comment
 
 .initLoginButton{
 	background-color: #808080;;
@@ -176,7 +257,10 @@ br {
 } 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 457798a... formatting, lf and archive and almost delete comment
 /*.letsScroll {
     height: px;
     overflow-y: auto;
@@ -197,9 +281,12 @@ br {
     padding-left: 0px;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     padding-left: 5px;
 }
 =======
+=======
+>>>>>>> 457798a... formatting, lf and archive and almost delete comment
 }
 
 .comments-list li {
@@ -253,5 +340,9 @@ hr {
 #posted {
     color: black;
     float: left;
+<<<<<<< HEAD
+}
+>>>>>>> 457798a... formatting, lf and archive and almost delete comment
+=======
 }
 >>>>>>> 457798a... formatting, lf and archive and almost delete comment
