@@ -127,7 +127,7 @@ border-radius: 50%
 }
 
 .logoutButton{
-	background-color: #4CAF50;
+	  background-color: #4CAF50;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -138,7 +138,7 @@ border-radius: 50%
     position: absolute;
     right: 50px;
     top: 102px
-}
+} 
 
 .initLoginButton{
 	background-color: #808080;;
@@ -158,6 +158,13 @@ h1 {
     text-align: center;
 } 
 
+h10 {
+    color: maroon;
+    position:relative;
+    right: 85px;
+    font-weight: bold;
+}
+
 br {
     line-height: 200%;
     }
@@ -168,6 +175,14 @@ br {
     border:solid 1px;
 } 
 
+<<<<<<< HEAD
+=======
+/*.letsScroll {
+    height: px;
+    overflow-y: auto;
+} */
+
+>>>>>>> 457798a... formatting, lf and archive and almost delete comment
 #recentSubUl {
     padding-left: 0px;
 
@@ -177,6 +192,66 @@ br {
 }
 
 .recentComContainer {
+    position: relative;
+    right: 55px;
+    padding-left: 0px;
 
+<<<<<<< HEAD
     padding-left: 5px;
 }
+=======
+}
+
+.comments-list li {
+    margin-bottom: 5px;
+    display: block;
+    position: relative;
+}
+
+.comments-list li:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    width: 0;
+}
+
+.reply-list {
+    padding-left: 88px;
+    clear: both;
+    margin-top: 5px;
+}
+
+.locationS {
+font-style: italic;
+color: #3d7208;
+/*margin-left: -30px;*/
+}
+
+.userSub{
+    color: #3d7208;
+    margin-left: -32px;
+}
+
+.typeOfSub {
+   float:right;
+   color: #510400;
+}
+
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #000000;
+    margin: .5em 2em;
+    width: 90%;
+
+}
+
+
+#posted {
+    color: black;
+    float: left;
+}
+>>>>>>> 457798a... formatting, lf and archive and almost delete comment

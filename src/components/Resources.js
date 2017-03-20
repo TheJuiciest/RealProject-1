@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import {FormGroup, FormControl, ControlLabel, HelpBlock, Button } from 'react-bootstrap';
 import RecentSubmission from './RecentSubmission';
 

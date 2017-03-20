@@ -30,19 +30,40 @@ class LostFound extends Component {
 
 	render() {
 		return (
-	    	<div>
-	    		<h1>Lost & Found Dogs</h1>	
-				<ul>
-		        {this.state.submissions.map(function(submission,index) {
-		        	if (submission.submissionType === 'Lost Dog' || submission.submissionType === 'Found Dog') {
-		        		return <RecentSubmissionItem  key={submission._id} submission={submission}/>
-		        	} else {
-		        		return ''
-		        	}
-		        })            
-		        }
-		        </ul> 
-	    	</div>
+	    	<div className="container">
+		    	<div className="row">
+					<div className="col-md-6">
+						<h1>Lost Dogs</h1>
+						<div id="rsContainer">
+							<ul>
+					        {this.state.submissions.map(function(submission,index) {
+					        	if (submission.submissionType === 'Lost Dog') {
+					        		return <RecentSubmissionItem  key={submission._id} submission={submission}/>
+					        	} else {
+					        		return ''
+					        	}
+					        })            
+					        }
+					        </ul> 
+						</div>
+					</div>
+					<div className="col-md-6">
+						<h1>Found Dogs</h1>
+						<div id="rsContainer">
+							<ul>
+					        {this.state.submissions.map(function(submission,index) {
+					        	if (submission.submissionType === 'Found Dog') {
+					        		return <RecentSubmissionItem  key={submission._id} submission={submission}/>
+					        	} else {
+					        		return ''
+					        	}
+					        })            
+					        }
+					        </ul> 
+					    </div> 
+					</div>
+				</div>
+			</div>
 		)
 	}
 }

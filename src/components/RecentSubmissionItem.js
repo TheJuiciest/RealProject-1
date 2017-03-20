@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import moment from 'moment';
-import Comment from './Comment';
-import CommentBox from './Comment';
 var config = require('../../config');
 
 
@@ -31,54 +29,104 @@ class RecentSubmissionItem extends Component {
 		 const { username, date, location, topicTitle, submissionType, description, fd, comments, _id}= this.props.submission;
 		 
 		 return (
-		 <div className="mainContainer">
-		 	<div className="recentSubContainer">
-		 		<div className="dateSub">
-		 		 	<span>{moment(date).format('MMMM Do YYYY')}</span>
-		 	 	</div>
-		 	 	 <div className="submissionSub"> 
-		 		     <span>{submissionType}</span>
-		 		 </div>   
-		 		  <div className="topicSub">
-		 		     <span>{topicTitle}</span>
-		 		 </div>  
-		 		 <div className="locationSub">
-		 		   <span>{location.split(', United States')}</span>
-		 		 </div>
-		 		 <div className="descriptionSub">
-		 		     <span>{description}</span>
-		 		 </div>
-		 		 <div className="fdSub">
-		 		 	 <span>{this.formatImg(fd)}</span>
-		 		 </div>
-		 		 <div className="userSub">
-		 			<span>{username}</span>
-		 		</div>
-		 	</div>
-		 	<div className="recentComContainer">
-		 		 <div className="commSub">
-		 		      {comments.map(comment => <Comment key={comment._id} comment={comment}/>)}<br/>
-		 	     </div>
-		    </div>
-		    <div className="buttonSub">
-		        	<button bsStyle="warning" className="commentButton" style={style} onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>	
-		            		{ this.state.showCommentBox && <CommentBox submissionId={_id}/> }
-		    </div>
-		 </div>
+        <div className="letsScroll">
+         <div className="mainContainer">
+             <div className="recentSubContainer">
+                 <div className="dateSub">
+                      <span>&nbsp; {moment(date).format('MMMM Do YYYY')}</span>
+                      <span className="typeOfSub">{submissionType} &nbsp;</span>
+                  </div>
+                      <hr/>
+                  <span className="locationS">&nbsp; {location.split( ', United States')}</span><br/>
+                      <ul id="comments-list" className="comments-list">
+                          <li>
+                   <div className="submissionSub">
+                   
+                  </div>  
+                  <div className="topicSub">
+                      <span id="topicSubs"><strong>{topicTitle}</strong></span><br/>
+                  </div>  
+                  <div className="locationSub">
+                   
+                  </div>
+                  <div className="descriptionSub">
+                      <span>{description}</span><br/>
+                  </div>
+                  <div className="fdSub">
+                       <span>{this.formatImg(fd)}</span>
+                  </div>
+                  <div className="userSub">
+                     <span><em id="posted">Submitted by: </em> {username}</span>
+                 </div>
+                         </li>
+                     </ul>
+             </div>
+                 <ul className="comments-list reply-list">
+                     <li>
+             <h10>Comments</h10>
+             <div className="recentComContainer">
+                  <div className="commSub">
+                       {comments.map(comment => <Comment key={comment._id} comment={comment}/>)}
+                  </div>
+            </div>
+                    </li>
+                </ul>
+                
+
+
+            <div className="buttonSub">
+                    <button bsStyle="warning" className="commentButton" style={style} onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>    
+                            { this.state.showCommentBox && <CommentBox submissionId={_id}/> }
+            </div>
+         </div>
+        </div>
 		 )
 		  
 		            	  
 	}
 }
 
-/*class Comment extends Component {
+class Comment extends Component {
+
+	/*deleteComment() {
+		$.ajax({
+			method: 'DELETE',
+			url: config.apiServer + '/api/comment',
+			data: {
+				comment: this.props.comment_id
+			}
+		})
+		.done(function(result){
+			console.log(result)
+		})
+	} 
+
+<div>
+	<button className='deleteComm' value="deleteInput" onClick={this.deleteComment.bind(this)}>Delete Comment</button>
+</div>
+
+	*/
 
 	render(){
 		const {date, _user, text} = this.props.comment
 		const userStyle = { color: 'black'}
-		return <div><span style={userStyle}>{_user.username}: </span>{text} (on {moment(date).format('MMMM Do YYYY h:mma')})</div>
+		return (
+			<div>
+				<div>
+					<span style={userStyle}>{_user.username}: </span>
+					{text} (on {moment(date).format('MMMM Do YYYY h:mma')})
+				</div>
+			</div>
+		)
 	}
 }
+
+
+
+
+
+
+
 
 class CommentBox extends Component {
     
@@ -113,12 +161,12 @@ class CommentBox extends Component {
     render() {
         return (
             <div> 
-            	<textarea className="commentBox" value={this.state.text} onChange={this.textChanged.bind(this)} placeholder="comment here about your stupid dog" />
+            	<textarea className="commentBox" value={this.state.text} onChange={this.textChanged.bind(this)} placeholder="Leave comment here..." />
             	<button className="sendComment" value="sendInput" onClick={this.handleCommentInput.bind(this)}>Post Comment</button> 
             </div>
         )
     }
-}*/
+}
 
 
 export default RecentSubmissionItem

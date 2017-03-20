@@ -100,9 +100,16 @@ apiRoutes.post('/submission', upload, requireLogin, subcontroller.submission);
 
 apiRoutes.post('/comment', requireLogin, commentController.comment);
 
+/*apiRoutes.delete('/comments', requireLogin, function(req, res){
+  Comment.findOne({comments: comment._id})
+    .exec(function(err, delete)
+      res.json('Success!');
+    )
+}) */
+
+
 apiRoutes.post('/register', controller.register);
 
-/*apiRoutes.post('/comment', requireLogin, subcontroller.comment); */
 
 apiRoutes.get('/submissions', function(req, res) {	//this gets the submission from the user database in mongo and return them as a json object
   var mongooseQuery = req.query.date ? {date: {$gte: new Date(req.query.date)}} : {};

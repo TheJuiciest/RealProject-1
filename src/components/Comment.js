@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+/*import React, {Component} from 'react';
 import $ from 'jquery';
 import moment from 'moment';
 var config = require('../../config');
