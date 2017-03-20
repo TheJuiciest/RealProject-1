@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
+import RecentSubmissionItem from './RecentSubmissionItem';
+//import Comment from './Comment';
+//import CommentBox from './Comment';
 
 class LostFound extends Component {
 
@@ -28,11 +31,11 @@ class LostFound extends Component {
 	render() {
 		return (
 	    	<div>
-	    		This is our lost and found page	
+	    		<h1>Lost & Found Dogs</h1>	
 				<ul>
 		        {this.state.submissions.map(function(submission,index) {
 		        	if (submission.submissionType === 'Lost Dog' || submission.submissionType === 'Found Dog') {
-		        		return <li key={index}>{submission.date}{submission.location}{submission.topicTitle}{submission.submissionType}{submission.description}</li>
+		        		return <RecentSubmissionItem  key={submission._id} submission={submission}/>
 		        	} else {
 		        		return ''
 		        	}

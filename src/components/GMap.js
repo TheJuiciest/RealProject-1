@@ -1,6 +1,7 @@
 import React from 'react';
 import infobox from '../maps/infobox'
 import moment from 'moment'
+var config = require('../../config');    
 
 var google = window.google;
 var refreshIntervalId;
@@ -134,8 +135,10 @@ class GMap extends React.Component {
         box.open(this.map, this.marker);
       });*/
 
+ 
+
   createInfoBox(submission, marker) {
-    const {date, username, location, topicTitle, description} = submission 
+    const {date, submissionType, username, location, topicTitle, description, fd} = submission 
     let boxText = `<div class='InfoBox'>
                         <span class='infoboxdate'>${moment(date).format('MMMM Do YYYY')}</span>
                         <div class='infobox-topdesc'>

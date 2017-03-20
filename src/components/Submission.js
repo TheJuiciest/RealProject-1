@@ -4,7 +4,7 @@ import $ from 'jquery';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import { Link } from 'react-router';
 var config = require('../../config');       //let's us use our config file, which connects us to mongo user database
-import moment from 'moment'
+import moment from 'moment';
 
 
 class Submission extends Component {
@@ -82,12 +82,11 @@ class Submission extends Component {
 
 		return (
 		  <div>	
+		  	<h1>Submit a Post</h1>
 			<div className="logoutContainer">
-				<h1>Submit a Post</h1>
-				<p1>If you'd like to submit a post, please login!</p1><br/>
-				<Link to='/login'><button className="initLoginButton">Login!</button></Link>
+					<p1>If you'd like to submit a post, please login!</p1><br/>
+					<Link to='/login'><button className="initLoginButton">Login!</button></Link>
 			</div>
-				<h1>Submit a Post</h1>
 				<div className="submitContainer"> 
 				    <form ref="uploadForm" className="uploader" encType="multipart/form-data" >
 						<div>

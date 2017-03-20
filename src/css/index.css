@@ -16,7 +16,7 @@ ul.topnav {
 }
 
 /* Float the list items side by side */
-ul.topnav li {width: 15%; float: left;}
+ul.topnav li {width: 18%; float: left;}
 
 /* Style the links inside the list items */
 ul.topnav li a {

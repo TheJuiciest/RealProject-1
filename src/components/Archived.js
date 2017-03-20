@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import $ from 'jquery';     
+import $ from 'jquery';
+import RecentSubmissionItem from './RecentSubmissionItem';     
 
 
 class Archived extends Component {
@@ -29,13 +30,9 @@ class Archived extends Component {
 	render() {
 		return (
 	    	<div>
-	    		Past Submission Posts
+	    		<h1>Past Submission Posts</h1>
 				<ul>
-		        {this.state.submissions.map(function(submission,index) {
-		        	console.log(submission)
-		            return <li key={index}>{submission.date}{submission.location}{submission.topicTitle}{submission.submissionType}{submission.description}</li>
-		          })
-		        }
+		        {this.state.submissions.map((submission) => <RecentSubmissionItem  key={submission._id} submission={submission}/>)}
 		        </ul>
 	    	</div>
 		)

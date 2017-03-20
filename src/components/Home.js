@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Submission from './Submission';
 import RecentSubmission from './RecentSubmission';
 import GMap from './GMap';
+import moment from 'moment';
 
 const initialCenter = { lng: -113.9966, lat: 46.8787 }
 class Home extends Component {
@@ -18,10 +19,18 @@ class Home extends Component {
 		var me = this;
 		$.ajax({
 			method: 'GET',
-			url: 'http://localhost:3002/api/submissions',
+			url: 'http://localhost:3002/api/submissions?date=' + moment().subtract(14, 'days').format(),
 		})
+		
 		.done(function(submissions){
+			/*console.log('submissions')
+			console.log(submissions)
+			console.log('date')
+			console.log(submissions.date) */
 			me.setState({ submissions: submissions })
+			/*submissions.date.sort(function(a, b){
+				return b.date-a.date;
+			}) */
 		})
 	}
 				//submissions.sort(function(a, b){
@@ -54,7 +63,6 @@ class Home extends Component {
 
 		return (
 			<div>				
-					<button className="logoutButton" value="logout" href="/">Logout!</button>
 					<div className="container">
 							<div className="col-md-12">
 								<GMap initialCenter={initialCenter} submissions={this.state.submissions} />

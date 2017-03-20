@@ -10,7 +10,7 @@ const comment = function (req, res){
 	
 	newComment.save(function(err, comment){
 		Submission.update(
-    		{ _id: req.body.submission }, 
+    		{ _id: req.body.submission },
     		{ $push: { comments: comment._id } },
     		function(err, update){
     			if (err){

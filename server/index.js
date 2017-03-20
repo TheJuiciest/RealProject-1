@@ -105,7 +105,8 @@ apiRoutes.post('/register', controller.register);
 /*apiRoutes.post('/comment', requireLogin, subcontroller.comment); */
 
 apiRoutes.get('/submissions', function(req, res) {	//this gets the submission from the user database in mongo and return them as a json object
-  Submission.find({})
+  var mongooseQuery = req.query.date ? {date: {$gte: new Date(req.query.date)}} : {};
+  Submission.find(mongooseQuery)
       .populate({path:'comments',  populate: { path: '_user', select: 'username' }})
       .exec(function(err, submissions) {
         res.json(submissions);
@@ -136,7 +137,7 @@ apiRoutes.post('/authenticate', function(req, res) {	//this will create the toke
       } else { 		//if the name is right and the password is right it creates a token (below)
 
         var token = jwt.sign(user, config.secret, { 	//this generates the tokens using json webtokens
-          expiresIn: 1440 // tells it to expire in 24 hours
+          expiresIn: 5400 // tells it to expire in 24 hours
         });
 
         
