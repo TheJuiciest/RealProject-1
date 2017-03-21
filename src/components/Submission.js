@@ -82,11 +82,11 @@ class Submission extends Component {
 
 		return (
 		  <div>	
-		  	<h1>Submit a Post</h1>
 			<div className="logoutContainer">
 					<p1>If you'd like to submit a post, please login!</p1><br/>
 					<Link to='/login'><button className="initLoginButton">Login!</button></Link>
 			</div>
+			<div className="mainSubContainer">
 				<div className="submitContainer"> 
 				    <form ref="uploadForm" className="uploader" encType="multipart/form-data" >
 						<div>
@@ -114,14 +114,12 @@ class Submission extends Component {
 							<label htmlFor='description'>Description:</label><textarea name='description' className="form-control" value={this.state.description} onChange={this.descriptionChanged.bind(this)}  placeholder="Description of event post" />
 						</div>
 						
-			            <div>
-			            	<div className="upload-file">
-			            		<input ref="file" type="file" name="file"/>
-			            	</div>
-			            	<div className="picUpload">
-			            		<label htmlFor='picture'>Pic Upload:</label>
-			            	</div>
-						</div><br/>
+			       
+			            <div className="picUpload">
+		            		<label htmlFor='picture'>Pic Upload:</label>
+		            		<input id='uploadButton' ref="file" type="file" name="file"/>
+			            </div>
+						<br/>
 						<div>
 							<button className="submissionButton" value="Beam it brah"
 							onClick={this.uploadFile.bind(this)}>Beam it brah!</button>
@@ -129,6 +127,7 @@ class Submission extends Component {
 		               </form>          
 				</div>
 			</div>
+		</div>
 			);
 	}
 }

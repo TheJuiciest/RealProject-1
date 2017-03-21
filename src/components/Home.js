@@ -74,7 +74,8 @@ class Home extends Component {
 										<RecentSubmission submissions={this.state.submissions} />
 									</div>
 								</div>
-								<div className="col-md-6">
+								<div className="col-md-4">
+									<h1 id='subPost'>Submit a Post</h1>
 									<Submission reloadSubmissions={this.recentGrabPosts.bind(this)}/>
 								</div>
 							</div>	

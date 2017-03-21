@@ -20,8 +20,7 @@ class RecentSubmissionItem extends Component {
     }
 
     formatImg(img){
-    	const imgStyle={height: '100px', width: '100px'}
-    	return img ? <img className="img-circle" style={imgStyle} role='presentation' src={config.frontEndServer + img.split('public')[1]}/> : '';
+    	return img ? <img className="imgStyle" role='presentation' src={config.frontEndServer + img.split('public')[1]}/> : '';
     }
 
 	render(){
@@ -56,28 +55,30 @@ class RecentSubmissionItem extends Component {
                        <span>{this.formatImg(fd)}</span>
                   </div>
                   <div className="userSub">
-                     <span><em id="posted">Submitted by: </em> {username}</span>
+                     <span><em id="posted">Submitted by: &nbsp; </em> {username}</span>
                  </div>
                          </li>
                      </ul>
              </div>
+             <div className="recentComContainer">
                  <ul className="comments-list reply-list">
                      <li>
-             <h10>Comments</h10>
-             <div className="recentComContainer">
+             	 <h10>Comments</h10>
+
                   <div className="commSub">
                        {comments.map(comment => <Comment key={comment._id} comment={comment}/>)}
                   </div>
-            </div>
+            
                     </li>
                 </ul>
-                
+           
 
 
-            <div className="buttonSub">
-                    <button bsStyle="warning" className="commentButton" style={style} onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>    
-                            { this.state.showCommentBox && <CommentBox submissionId={_id}/> }
-            </div>
+	            <div className="buttonSub">
+	                    <button bsStyle="warning" className="commentButton" style={style} onClick={this.onClick.bind(this)} value="comment">Leave a Comment</button>    
+	                            { this.state.showCommentBox && <CommentBox submissionId={_id}/> }
+	            </div>
+	        </div>
          </div>
         </div>
 		 )
@@ -109,12 +110,12 @@ class Comment extends Component {
 
 	render(){
 		const {date, _user, text} = this.props.comment
-		const userStyle = { color: 'black'}
+		const userStyle = { color: 'green'}
 		return (
 			<div>
 				<div>
-					<span style={userStyle}>{_user.username}: </span>
-					{text} (on {moment(date).format('MMMM Do YYYY h:mma')})
+					<span style={userStyle}> {_user.username}: </span>
+					{text} <em id='commentDate'> (on {moment(date).format('MMMM Do YYYY h:mma')}) </em>
 				</div>
 			</div>
 		)
