@@ -4,6 +4,7 @@ import Submission from './Submission';
 import RecentSubmission from './RecentSubmission';
 import GMap from './GMap';
 import moment from 'moment';
+import config from '../../config'
 
 const initialCenter = { lng: -113.9966, lat: 46.8787 }
 class Home extends Component {
@@ -19,7 +20,7 @@ class Home extends Component {
 		var me = this;
 		$.ajax({
 			method: 'GET',
-			url: 'http://localhost:3002/api/submissions?date=' + moment().subtract(14, 'days').format(),
+			url: config.apiServer + '/api/submissions?date=' + moment().subtract(14, 'days').format(),
 		})
 		
 		.done(function(submissions){
