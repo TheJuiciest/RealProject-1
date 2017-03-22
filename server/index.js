@@ -15,9 +15,8 @@ var path = require('path');
 
 
 var app = express();
-var db = 'mongodb://localhost/dog_project';
 
-mongoose.connect(db)
+mongoose.connect(config.database)
 
 
 app.use(morgan('dev'));
