@@ -50,7 +50,7 @@ class Login extends Component {
 			<div className="board">
 				<div className="container">
 					<div>
-						<h2>Login Your Life</h2>
+						<h3>Login Your Life</h3>
 					</div>
 					<div className="inputLog">
 						<input value={this.state.username} onChange={this.usernameChanged.bind(this)} placeholder="Enter Username" /><br/>

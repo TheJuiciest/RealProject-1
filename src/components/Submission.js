@@ -83,8 +83,10 @@ class Submission extends Component {
 		return (
 		  <div>	
 			<div className="logoutContainer">
-					<p1>If you'd like to submit a post, please login!</p1><br/>
+				<form>
+					<p1>If you'd like to submit a post or comment, please login!</p1><br/>
 					<Link to='/login'><button className="initLoginButton">Login!</button></Link>
+				</form>
 			</div>
 			<div className="mainSubContainer">
 				<div className="submitContainer"> 

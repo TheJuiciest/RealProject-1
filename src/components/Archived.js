@@ -29,12 +29,14 @@ class Archived extends Component {
 
 	render() {
 		return (
-	    	<div>
-	    		<h1>Past Submission Posts</h1>
-				<ul>
-		        {this.state.submissions.map((submission) => <RecentSubmissionItem  key={submission._id} submission={submission}/>)}
-		        </ul>
-	    	</div>
+		    <div className="archivedContainer">
+		    	<div className="col-md-6">
+		    		<h1 id='archivedHead'>Past Submission Posts</h1>
+					<ul>
+			        {this.state.submissions.map((submission) => <RecentSubmissionItem  key={submission._id} submission={submission}/>)}
+			        </ul>
+		    	</div>
+		    </div>	
 		)
 	}
 }

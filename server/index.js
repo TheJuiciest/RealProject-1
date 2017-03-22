@@ -30,6 +30,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+app.use(express.static('build')) 
 app.use(express.static('public'))     //which page to be displayed (our index.html)
 
 app.get('/', function(req, res){  //specifies the route that the user goes to when they've loaded up their application
@@ -173,5 +175,8 @@ apiRoutes.get('/users', function(req, res) {  //this gets the users from the use
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);               //this puts the /api on anything that uses api routers
 
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../build/index.html'))
+})
 app.listen(config.apiPort);
 console.log("server started on port " + config.apiPort);

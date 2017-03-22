@@ -14,7 +14,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Man's Best Friend</h2>
+          <div className="logoHeader">
+            <h2>Man's Best Friend<img id='logoDog' src='http://localhost:3000/dogpen.png'/></h2>
+          </div>
           <Router history={browserHistory}>
             <Route path='/' component={Header}>
                 <IndexRoute component={Home} />

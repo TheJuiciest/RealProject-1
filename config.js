@@ -1,8 +1,9 @@
 var apiPort = 3002
+var deployed = true 
 module.exports = {
 	'secret': 'doggystyle',
-	'database': 'mongodb://localhost/users',
-	'apiServer': 'http://localhost:' + apiPort,
-	'apiPort' : apiPort,
-	'frontEndServer': "http://localhost:3000" 
+	'database': process.env.MONGODB_URI || 'mongodb://localhost/users',
+	'apiServer': deployed ? '': 'http://localhost:' + apiPort,
+	'apiPort' : process.env.PORT || apiPort,
+	'frontEndServer': deployed ? '': "http://localhost:3000" 
 };

@@ -15,7 +15,8 @@
    border-width: 5px;
    box-shadow:0 1px 0 #cfcfcf ;
    position: relative;
-   right: 75px;
+   left: 500px;
+   top: 50px;
    height: 310px;
    width: 280px;
 
@@ -30,7 +31,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .sendComment {
@@ -44,7 +45,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 
@@ -65,23 +66,25 @@ input{
 .logger{  
 
     position:relative;
-    left: 725px;
+    left: 750px;
+    top: 50px;
     font-size: 30px;
     background-color: #C0C0C0 ;
     padding: 0px 50px 5px 50px; /* 50 was 350 first*/
     border-radius: 5px;
-    
+    font-family: 'Coming Soon', cursive;
 }
 
 
 .reggy{
     position:relative;
-    left: 325px;
+    left: 350px;
+    top: 50px;
     font-size: 30px;
     background-color: #C0C0C0 ;
     padding: 0px 20px 5px 50px; /* 175 was 5 first*/
     border-radius: 5px;
-
+    font-family: 'Coming Soon', cursive;
 
 }
 
@@ -95,19 +98,19 @@ input{
 }
 
 .loginButton{
-    font-family: Monaco;
     color: white;
     background-color: #561111 ;
     border-radius: 5px;
     position: relative;
-    left: 215px;
-
+    left: 225px;
+    font-size: 16px;
 }
 
 
 
 .loginButton:hover {
     background: black;
+    font-family: 'Acme', sans-serif;
 
 }
 
@@ -117,15 +120,21 @@ input{
   right: 40px;
 }
 .registerButton {
-    font-family: Monaco;
     color: white;
     background-color: #561111 ;
     border-radius: 5px;
     position: relative;
-    left: 180px;
+    left: 205px;
+    font-family: 'Acme', sans-serif;
 
 }
 
 .registerButton:hover {
     background-color: black;
+}
+
+h3 {
+  font-family: 'Acme', sans-serif;
+  font-size: 32px;
+  text-align: center;
 }

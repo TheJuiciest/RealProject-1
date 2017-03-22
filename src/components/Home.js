@@ -62,15 +62,15 @@ class Home extends Component {
 
 
 		return (
-			<div>				
+			<div className='totalContainer'>				
 					<div className="container">
 							<div className="col-md-12">
-								<GMap initialCenter={initialCenter} submissions={this.state.submissions} />
+								<GMap initialCenter={initialCenter} className= 'gmapBorder' submissions={this.state.submissions} />
 							</div>
 							<div className="row">
 								<div className="col-md-6">
-									<h1>Recent Event Submissions</h1>
-									<div id="rsContainer">
+								<h1>Recent Event Submissions</h1>
+									<div className="rsContainer">
 										<RecentSubmission submissions={this.state.submissions} />
 									</div>
 								</div>

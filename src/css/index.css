@@ -8,7 +8,7 @@ body {
 /* Remove margins and padding from the list, and add a black background color */
 ul.topnav {
     list-style-type: none;
-    margin: 50px;
+    margin: 10px;
     padding: 0;
     overflow: hidden;
     background-color: #808080;
@@ -16,7 +16,7 @@ ul.topnav {
 }
 
 /* Float the list items side by side */
-ul.topnav li {width: 18%; float: left;}
+ul.topnav li {width: 25%; float: left;}
 
 /* Style the links inside the list items */
 ul.topnav li a {
@@ -26,7 +26,9 @@ ul.topnav li a {
     padding: 14px 16px;
     text-decoration: none;
     transition: 0.3s;
-    font-size: 17px;
+    font-size: 24px;
+    
+    
 }
 
 /* Change background color of links on hover */

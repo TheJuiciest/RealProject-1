@@ -18,7 +18,7 @@ class GMap extends React.Component {
 
 
 	render() {
-    var mapStyle={height: 400}
+    var mapStyle={height: 400, border:'solid 6px black', 'margin-bottom': '50px', position: 'relative', top: '25px'}
     return <div className="GMap">
       <div className='UpdatedText'>
       </div>

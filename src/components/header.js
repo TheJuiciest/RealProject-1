@@ -33,9 +33,6 @@ class Header extends Component {
 	                <li className="Nav__item">
 	                  <Link to="/archived">Archived</Link>
 	                </li>
-	                <li className="Nav__item">
-	                  <Link to="/resources">Resources</Link>
-	                </li>
 	              </ul>
 	            </div>
 	          </div>

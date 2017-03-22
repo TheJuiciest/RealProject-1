@@ -50,8 +50,10 @@ class Register extends Component {
 				password: this.state.password
 			}
 		})
-		.done(function(result){
-			console.log(result)
+		.done(function(data){
+			alert("Success! Go post or comment!");
+			window.location.replace("/");
+			console.log(data);
 		})
 	}
 	
@@ -61,7 +63,7 @@ class Register extends Component {
 			<div className="board">
 				<div className="container">
 					<div>
-						<h2>Register Your Life</h2>
+						<h3>Register Your Life</h3>
 					</div>
 				<div className="inputReg">
 					<input value={this.state.firstname} onChange={this.firstnameChanged.bind(this)} placeholder="First Name" /><br/>
