@@ -51,7 +51,7 @@ class Register extends Component {
 			}
 		})
 		.done(function(data){
-			alert("Success! Go post or comment!");
+			alert("Success! Please login to post or comment!");
 			window.location.replace("/");
 			console.log(data);
 		})

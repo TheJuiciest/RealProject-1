@@ -76,9 +76,18 @@ class Submission extends Component {
         e.preventDefault()
     }	
 	render() {
+		const myStyles = {
+            root: {position: 'relative',
+                    left: '-18px',
+                    top: '-25px',
+                    padding:  '0px',
+                    width: '200px'},
+            input: {width: '100%'},
+            autocompleteContainer: {backgroundColor: 'green'},
+            autocompleteItem: {color: 'black'},
+            autocompleteActive: {color: 'blue'}
+        }
 
-
-  		
 
 		return (
 		  <div>	
@@ -95,7 +104,7 @@ class Submission extends Component {
 							<label htmlFor='date'>Date:</label><input name='date' id="date" value={this.state.date} type="date" onChange={this.dateChanged.bind(this)} placeholder="What date did this happen?" />
 						</div>
 						<div>
-							<label htmlFor='location'>Location: </label><PlacesAutocomplete id="location" name='location' value={this.state.location} onChange={this.onChange.bind(this)} placeholder="Location of event" />
+							<label htmlFor='location'>Location: </label><PlacesAutocomplete styles={myStyles} id="location" name='location' value={this.state.location} onChange={this.onChange.bind(this)} placeholder="Location of event" />
 					    </div>
 					    <div>
 					    	<label htmlFor="topic">Topic:</label><input name='topic' id="topicTitle" value={this.state.topicTitle} onChange={this.topicTitleChanged.bind(this)} placeholder="Name to your Post" />

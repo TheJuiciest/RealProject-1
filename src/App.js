@@ -6,6 +6,7 @@ import Home from './components/Home';
 import LostFound from './components/LostFound';
 import Archived from './components/Archived';
 import Enter from './components/Enter';
+var config = require('../../config'); 
 
 
 
@@ -15,7 +16,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <div className="logoHeader">
-            <h2>Man's Best Friend<img id='logoDog' src='http://localhost:3000/dogpen.png'/></h2>
+            <h2>Man's Best Friend<img id='logoDog' src= 'config.apiServer' + '/dogpen.png'/></h2>
           </div>
           <Router history={browserHistory}>
             <Route path='/' component={Header}>

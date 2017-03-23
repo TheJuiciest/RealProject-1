@@ -80,9 +80,9 @@ class GMap extends React.Component {
 
   createMarker(submissionType, lat,lng) {
 
-    var imgCaution = 'http://localhost:3000/caution.png';
-    var imgLost = 'http://localhost:3000/lostDog.png';
-    var imgFound = 'http://localhost:3000/foundDog.png';
+    var imgCaution = config.apiServer + '/caution.png';
+    var imgLost = config.apiServer + '/lostDog.png';
+    var imgFound = config.apiServer + '/foundDog.png';
     console.log('Creating marker', lat, lng)
 
     /*var oms = new OverlappingMarkerSpiderfier(this.map,

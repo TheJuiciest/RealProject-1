@@ -16,7 +16,7 @@ class Archived extends Component {
 		var me = this;
 		$.ajax({
 			method: 'GET',
-			url: 'http://localhost:3002/api/submissions',
+			url: config.apiServer + '/api/submissions'
 		})
 		.done(function(submissions){
 			me.setState({ submissions: submissions })

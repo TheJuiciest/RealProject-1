@@ -3,6 +3,7 @@ import $ from 'jquery';
 import RecentSubmissionItem from './RecentSubmissionItem';
 //import Comment from './Comment';
 //import CommentBox from './Comment';
+import config from '../../config';
 
 class LostFound extends Component {
 
@@ -17,7 +18,7 @@ class LostFound extends Component {
 		var me = this;
 		$.ajax({
 			method: 'GET',
-			url: 'http://localhost:3002/api/submissions',
+			url: config.apiServer + '/api/submissions'
 		})
 		.done(function(submissions){
 			me.setState({ submissions: submissions })
